@@ -65,7 +65,7 @@ android {
         }
     }
     packagingOptions {
-        pickFirst 'META-INF/*'
+        pickFirst 'META-INF/rxjava.properties'
     }
 }
 
@@ -127,7 +127,7 @@ dependencies {
     implementation "com.github.armcha:Logger:${loggerVersion}"
 
     //Leak canary
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
 
     //amap
     implementation 'com.amap.api:location:3.4.1'

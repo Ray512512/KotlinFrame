@@ -34,7 +34,7 @@ class LoginFragment : BaseFragment<LoginContract.View, LoginContract.Presenter>(
 
     override fun onLoginSucceed() {
         start<MainActivity>()
-        getActivity().finish()
+        getActivity()!!.finish()
     }
 
     override fun lazyFetchData() {
