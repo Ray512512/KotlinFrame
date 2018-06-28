@@ -3,7 +3,7 @@ package com.moodsmap.waterlogging.data.api.domain.entity.simple
 import io.realm.RealmObject
 
 /**
- * Created by gong on 2017/11/21.
+ * Created by Ray on 2017/11/21.
  */
 open class Warning : RealmObject() {
 //        val ID: Int, //1

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 
 /**
- * Created by gong on 2017/11/6.
+ * Created by Ray on 2017/11/6.
  */
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View{
 

@@ -8,7 +8,7 @@ import dagger.Provides
 import com.moodsmap.waterlogging.di.scope.PerActivity
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 @Module
 class ActivityModule(private val activity: AppCompatActivity) {

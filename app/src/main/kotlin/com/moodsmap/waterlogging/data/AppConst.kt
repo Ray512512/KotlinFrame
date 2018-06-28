@@ -5,7 +5,7 @@ import com.moodsmap.waterlogging.App
 
 
 /**
- * Created by gong on 2017/11/22.
+ * Created by Ray on 2017/11/22.
  */
 object AppConst {
 

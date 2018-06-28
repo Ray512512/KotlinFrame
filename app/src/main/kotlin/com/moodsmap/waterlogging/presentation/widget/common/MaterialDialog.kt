@@ -16,7 +16,7 @@ import com.moodsmap.waterlogging.presentation.utils.extensions.unSafeLazy
 import kotlinx.android.synthetic.main.dialog_item.*
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 
 class MaterialDialog(context: Context) : Dialog(context, R.style.MaterialDialogSheet) {

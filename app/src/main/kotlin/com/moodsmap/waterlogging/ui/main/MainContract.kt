@@ -3,7 +3,7 @@ package com.moodsmap.waterlogging.ui.main
 import com.moodsmap.waterlogging.presentation.base_mvp.api.ApiContract
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 interface MainContract {
     interface View : ApiContract.View {

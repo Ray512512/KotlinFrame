@@ -13,7 +13,7 @@ import io.realm.RealmConfiguration
 
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 class App : Application() {
     val applicationComponent: ApplicationComponent by unSafeLazy {

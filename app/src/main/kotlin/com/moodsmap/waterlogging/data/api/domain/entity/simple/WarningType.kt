@@ -4,7 +4,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 /**
- * Created by gong on 2017/12/14.
+ * Created by Ray on 2017/12/14.
  */
 open class WarningType() : RealmObject() {
     @PrimaryKey

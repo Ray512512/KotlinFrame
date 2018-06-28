@@ -8,7 +8,7 @@ import com.amap.api.location.AMapLocationListener
 
 
 /**
- * Created by gong on 2018/1/9.
+ * Created by Ray on 2018/1/9.
  */
 class LocationClient(context: Context) {
     private var realClient: AMapLocationClient = AMapLocationClient(context)

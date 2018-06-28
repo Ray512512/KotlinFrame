@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 @PerActivity
 class DataRepository @Inject constructor(private var apiService: ApiService,

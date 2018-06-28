@@ -8,7 +8,7 @@ import com.moodsmap.waterlogging.data.AppConst
 import com.moodsmap.waterlogging.presentation.utils.extensions.log
 
 /**
- * Created by gong on 2017/12/7.
+ * Created by Ray on 2017/12/7.
  */
 
 open class WarningUtil {

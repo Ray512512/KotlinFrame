@@ -8,7 +8,7 @@ import com.moodsmap.waterlogging.ui.main.MainActivity
 import dagger.Subcomponent
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 @PerActivity
 @Subcomponent(modules = [(ActivityModule::class)])

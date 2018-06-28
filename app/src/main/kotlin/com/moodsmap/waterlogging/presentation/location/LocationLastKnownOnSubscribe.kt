@@ -7,7 +7,7 @@ import org.reactivestreams.Publisher
 import org.reactivestreams.Subscriber
 
 /**
- * Created by gong on 2018/1/9.
+ * Created by Ray on 2018/1/9.
  */
 class LocationLastKnownOnSubscribe(private var context: Context) : Publisher<AMapLocation> {
 

@@ -10,7 +10,7 @@ import java.io.Serializable
 
 
 /**
- * Created by gong on 2018/3/21.
+ * Created by Ray on 2018/3/21.
  */
 class User : Serializable, Cloneable {
 

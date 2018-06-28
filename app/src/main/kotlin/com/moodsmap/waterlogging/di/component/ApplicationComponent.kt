@@ -7,7 +7,7 @@ import com.moodsmap.waterlogging.di.module.ApplicationModule
 import javax.inject.Singleton
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 
 @Singleton

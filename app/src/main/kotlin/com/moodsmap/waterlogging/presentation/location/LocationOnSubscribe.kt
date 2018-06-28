@@ -7,7 +7,7 @@ import io.reactivex.FlowableEmitter
 import io.reactivex.FlowableOnSubscribe
 
 /**
- * Created by gong on 2018/1/9.
+ * Created by Ray on 2018/1/9.
  */
 class LocationOnSubscribe(private var context: Context) : FlowableOnSubscribe<AMapLocation> {
 

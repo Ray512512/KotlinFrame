@@ -6,7 +6,7 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 
 /**
- * Created by gong on 2018/1/9.
+ * Created by Ray on 2018/1/9.
  */
 
 object RxLocation {

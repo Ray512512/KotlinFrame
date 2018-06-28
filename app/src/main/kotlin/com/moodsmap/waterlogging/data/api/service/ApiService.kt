@@ -6,7 +6,7 @@ import io.reactivex.Flowable
 import retrofit2.http.GET
 
 /**
- * Created by gong on 2017/10/18.
+ * Created by Ray on 2017/10/18.
  */
 interface ApiService {
 

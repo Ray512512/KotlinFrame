@@ -3,7 +3,7 @@ package com.moodsmap.waterlogging.presentation.utils
 import java.io.*
 
 /**
- * Created by gong on 2018/3/21.
+ * Created by Ray on 2018/3/21.
  */
 class Utils {
     companion object {
