@@ -1,0 +1,1 @@
+include ':app', ':libs:baseMVP','libs:UpdateAppUtils','libs:multitem','libs:magicindicator','libs:spruce','libs:multi-image-selector'

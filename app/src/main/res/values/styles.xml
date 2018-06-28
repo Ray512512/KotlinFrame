@@ -1,0 +1,156 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/bg_color</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+    </style>
+
+
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textNormal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/image_welcome</item>
+    </style>
+
+    <style name="Divider" parent="MatchParent">
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="MatchParent.ContentCenter">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WrapContent.ContentCenter">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WrapContent.WidthMatchParent">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="WrapContent.WidthMatchParent.ContentCenter">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WrapContent.HeightMatchParent">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WrapContent.HeightMatchParent.ContentCenter">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WrapContent.CenterHorizontal">
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="WrapContent.CenterInParent">
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="AppTheme.Button" />
+
+    <style name="AppTheme.Button.Primary">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="Button" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="Button.Primary">
+        <item name="android:theme">@style/AppTheme.Button.Primary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Button.Primary.WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Button.Primary.WrapContent.WidthMatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="et_login" parent="WrapContent.WidthMatchParent">
+        <item name="android:paddingLeft">@dimen/padding.xlarge</item>
+        <item name="android:background">@drawable/bg_edittext_login</item>
+        <item name="android:layout_height">@dimen/item_height</item>
+    </style>
+
+    <style name="btn_login" parent="WrapContent.WidthMatchParent">
+        <item name="android:layout_height">@dimen/item_height</item>
+        <item name="android:textColor">@color/login_text</item>
+        <item name="android:textSize">@dimen/font_size_14sp</item>
+        <item name="android:background">@drawable/bg_button_login</item>
+    </style>
+
+
+    <style name="view_margin" parent="MatchParent">
+        <item name="android:layout_height">@dimen/padding.normal</item>
+    </style>
+
+    <style name="RightPopAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/right_in</item>
+        <item name="android:windowExitAnimation">@anim/right_out</item>
+    </style>
+
+    <style name="ListItemButton">
+        <item name="android:layout_width">@dimen/layer_width</item>
+        <item name="android:layout_height">@dimen/layer_width</item>
+        <item name="android:background">@drawable/bg_item_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:checkable">true</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">@color/layer_text</item>
+        <item name="android:textSize">@dimen/font_size_8sp</item>
+    </style>
+
+    <style name="LayerText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableTop">@drawable/bg_layer</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:layout_marginTop">@dimen/layer_margin</item>
+        <item name="android:textSize">@dimen/font_size_10sp</item>
+        <item name="android:textColor">@color/layer_text</item>
+    </style>
+</resources>

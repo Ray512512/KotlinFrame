@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_gravity="center"
+    android:layout_marginRight="40dp"
+    android:background="@drawable/bg_layer"
+    android:padding="@dimen/padding.large">
+
+    <EditText
+        android:id="@+id/et_account"
+        style="@style/et_login"
+        android:hint="@string/hint_input_account"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:id="@+id/ll_login_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding.large"
+        app:layout_constraintTop_toBottomOf="@+id/et_account">
+
+        <EditText
+            android:id="@+id/et_code"
+            style="@style/et_login"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:hint="@string/hint_input_code"
+            android:inputType="number" />
+
+        <View
+            android:layout_width="@dimen/padding.normal"
+            android:layout_height="0dp" />
+
+        <Button
+            style="@style/btn_login"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/get_code" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/cbx_agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding.normal"
+        android:text="@string/confirm_user_agreement"
+        android:textColor="@color/login_text"
+        android:textSize="@dimen/font_size_12sp"
+        app:layout_constraintTop_toBottomOf="@+id/ll_login_code" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/btn_login"
+        android:layout_marginTop="@dimen/padding.large"
+        android:text="@string/validation_account"
+        android:textSize="@dimen/font_size_18sp"
+        app:layout_constraintTop_toBottomOf="@+id/cbx_agreement" />
+
+    <LinearLayout
+        style="@style/WrapContent.WidthMatchParent"
+        android:layout_marginTop="@dimen/item_height"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_login_wechat"
+            style="@style/WrapContent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/vector_icon_login_wechat"
+            android:gravity="center"
+            android:text="@string/login_wechat"
+            android:textColor="@color/login_text"
+            android:textSize="@dimen/font_size_16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/item_height"
+            android:background="@color/login_text" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tv_login_qq"
+            style="@style/WrapContent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/vector_icon_login_qq"
+            android:gravity="center"
+            android:text="@string/login_qq"
+            android:textColor="@color/login_text"
+            android:textSize="@dimen/font_size_16sp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
