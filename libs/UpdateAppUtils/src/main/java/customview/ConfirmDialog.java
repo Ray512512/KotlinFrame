@@ -29,6 +29,7 @@ public class ConfirmDialog extends Dialog {
     private TextView cancleBtn;
     private TextView tvTitle;
 
+    private boolean isForce=false;
 
     private int type=-1;
     public void setCallback(Callback callback) {
@@ -40,8 +41,9 @@ public class ConfirmDialog extends Dialog {
         setCustomDialog();
     }
 
-    public ConfirmDialog(@NonNull Context context,int type, Callback callback) {
+    public ConfirmDialog(@NonNull Context context,int type, boolean isForce, Callback callback) {
         super(context, R.style.CustomDialog);
+        this.isForce=isForce;
         this.type=type;
         this.callback = callback;
         setCustomDialog();
@@ -69,14 +71,20 @@ public class ConfirmDialog extends Dialog {
         sureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.callback(OK);
-                ConfirmDialog.this.cancel();
+                if(callback!=null) {
+                    callback.callback(OK);
+                }
+                if(!isForce) {
+                    ConfirmDialog.this.cancel();
+                }
             }
         });
         cancleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.callback(CANCLE);
+                if(callback!=null) {
+                    callback.callback(CANCLE);
+                }
                 ConfirmDialog.this.cancel();
             }
         });

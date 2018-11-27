@@ -65,7 +65,9 @@ object RxFun {
      */
     fun interval(period: Long, callback: RxInterface.intervalInterface2, vararg schedulers: Scheduler): Disposable {
         val s = getScheduler(*schedulers)
-        return Observable.interval(period, TimeUnit.SECONDS).takeUntil { callback.isStop }.subscribeOn(s[0]).observeOn(s[1]).subscribe {
+        return Observable.interval(period, TimeUnit.MILLISECONDS).takeUntil {
+            callback.isStop
+        }.subscribeOn(s[0]).observeOn(s[1]).subscribe {
             Log.v(TAG, "interval 2\t$it")
             callback.action(it)
         }
@@ -99,7 +101,8 @@ object RxFun {
      * @param time 防抖间隔
      * @param simple
      */
-    fun clicks(view: View, time: Int, simple: RxInterface.simple): Disposable {
+    @JvmStatic
+    fun clicks(view: View, time: Long, simple: RxInterface.simple): Disposable {
         return RxView.clicks(view).throttleFirst(time.toLong(), TimeUnit.MILLISECONDS).subscribe { simple.action() }
     }
 
@@ -115,5 +118,7 @@ object RxFun {
         return RxTextView.textChanges(view).debounce(time.toLong(), TimeUnit.MILLISECONDS).skip(1)//跳过初始值空字符
                 .observeOn(AndroidSchedulers.mainThread()).subscribe { simple.action() }
     }
+
+
 
 }

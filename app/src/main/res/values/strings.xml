@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">心情地图</string>
+    <string name="app_name">AppName</string>
+    <string name="app_tag_name">Lottery</string>
 
     <string name="error_title">Something went wrong</string>
     <string name="hint_input_account">输入手机号</string>
@@ -9,4 +10,24 @@
     <string name="validation_account">验证手机</string>
     <string name="login_wechat">微信登录</string>
     <string name="login_qq">QQ登录</string>
+
+    <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
+    <string name="location_must_permission">无法获取到当前位置信息将无法进行下单，请前往系统设置打开定位权限</string>
+    <string name="btn_go">前往</string>
+    <string name="location_must_show_permission">系统需要获取您的当前位置为您匹配最近的店铺进行下单，请点击确认进行授权</string>
+    <string name="btn_sure">确认</string>
+    <string name="system_dialog_title">系统提示</string>
+    <string name="setting">设置</string>
+    <string name="net_error">您的网络连接已断开</string>
+    <string name="photo_need_permission">请前往系统设置打开相机权限</string>
+    <string name="reload">重新加载</string>
+    <string name="xlistview_header_hint_normal">下拉可以刷新</string>
+    <string name="xlistview_header_hint_ready">松开立即刷新</string>
+    <string name="xlistview_header_hint_loading">正在刷新数据中...</string>
+    <string name="xlistview_header_last_time">最后更新：</string>
+    <string name="xlistview_footer_hint_normal">上拉可以加载更多</string>
+    <string name="xlistview_footer_hint_ready">松开立即加载更多</string>
+    <string name="xlistview_footer_hint_loading">正在加载更多的数据...</string>
+    <string name="quit_ask">再点击一次退出应用</string>
+
 </resources>

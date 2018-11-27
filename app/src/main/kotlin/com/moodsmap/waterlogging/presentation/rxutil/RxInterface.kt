@@ -11,6 +11,10 @@ class RxInterface {
         fun action()
     }
 
+    interface simpleR<T>{
+        fun action(t:T)
+    }
+
     //无条件轮训
     interface intervalInterface1 {
         fun action(time: Long)

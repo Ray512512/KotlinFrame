@@ -2,6 +2,7 @@ package com.moodsmap.waterlogging.presentation.utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.WindowManager;
 
 public class SizeUtils {
@@ -76,4 +77,22 @@ public class SizeUtils {
         return screenWidth - sp2px(context, padding);
     }
 
+    /***
+     * 得到屏幕分辨率高
+     */
+    @SuppressWarnings("deprecation")
+    public static int getDisplayHeight(Context context) {
+        Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        return display.getHeight();
+
+    }
+
+    /***
+     * 得到屏幕分辨率宽
+     */
+    @SuppressWarnings("deprecation")
+    public static int getDisplayWidth(Context context) {
+        Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        return display.getWidth();
+    }
 }

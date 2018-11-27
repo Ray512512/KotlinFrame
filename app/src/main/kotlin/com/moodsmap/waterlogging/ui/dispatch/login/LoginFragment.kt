@@ -7,8 +7,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.moodsmap.waterlogging.R
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BaseFragment
-import com.moodsmap.waterlogging.presentation.utils.extensions.onClick
-import com.moodsmap.waterlogging.presentation.utils.extensions.start
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.onClick
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.start
 import com.moodsmap.waterlogging.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject

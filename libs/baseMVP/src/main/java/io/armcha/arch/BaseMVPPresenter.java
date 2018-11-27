@@ -3,6 +3,7 @@ package io.armcha.arch;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 
@@ -13,6 +14,10 @@ public abstract class BaseMVPPresenter<V extends BaseMVPContract.View> implement
 
     private Bundle stateBundle;
     private V view;
+
+    @Override
+    public void onLifecycleChanged(LifecycleOwner owner, Lifecycle.Event event) {
+    }
 
     @Override
     final public V getView() {

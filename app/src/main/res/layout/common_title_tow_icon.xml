@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@drawable/shape_gradient"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_back"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/img_back"
+        android:background="?selectableItemBackgroundBorderless"
+        />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="标题"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:id="@+id/img_action1"
+        android:scaleType="centerInside"
+        android:layout_toLeftOf="@+id/img_action2"
+        android:background="?selectableItemBackgroundBorderless"
+        />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:id="@+id/img_action2"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:background="?selectableItemBackgroundBorderless"
+        />
+</RelativeLayout>

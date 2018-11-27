@@ -153,4 +153,28 @@
         <item name="android:textSize">@dimen/font_size_10sp</item>
         <item name="android:textColor">@color/layer_text</item>
     </style>
+
+    <style name="Text_Title_w">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text_Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_1</item>
+        <item name="android:textColor">@color/text_1</item>
+    </style>
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <!-- colorPrimary is used for the default action bar background
+            用于默认操作栏的背景-->
+        <item name="colorPrimary">@color/switchColor</item>
+        <!-- colorPrimaryDark is used for the status bar 主要用于状态栏-->
+        <item name="colorPrimaryDark">@color/switchColor</item>
+        <!-- colorAccent is used as the default value for colorControlActivated,
+             which is used to tint widgets 用于色彩控制器的默认值，用来给小部件着色-->
+        <item name="colorAccent">@color/switchColor</item>
+    </style>
 </resources>

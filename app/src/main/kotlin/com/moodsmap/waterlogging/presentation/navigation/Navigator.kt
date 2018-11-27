@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import com.moodsmap.waterlogging.R
 import com.moodsmap.waterlogging.di.scope.PerActivity
-import com.moodsmap.waterlogging.presentation.utils.Experimental
-import com.moodsmap.waterlogging.presentation.utils.extensions.log
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.log
 import javax.inject.Inject
+import com.moodsmap.waterlogging.presentation.utils.Experimental
 
 /**
  */
@@ -25,8 +25,8 @@ class Navigator @Inject constructor(private val activity: AppCompatActivity,
     private var fragmentMap: LinkedHashMap<String, Screen> = linkedMapOf()
     lateinit var fragmentChangeListener: FragmentChangeListener
 
-    private val containerId = R.id.container //TODO add to builder
-    private var activeTag: String? = null
+    private val containerId = R.id.container
+    public var activeTag: String? = null
     private var rootTag: String? = null
     private var isCustomAnimationUsed = false
 
@@ -58,6 +58,11 @@ class Navigator @Inject constructor(private val activity: AppCompatActivity,
         }
     }
 
+    fun getFragment(tag: String):Fragment?{
+        val screen = fragmentMap[tag]
+        return screen?.fragment
+    }
+
     fun getState(): NavigationState {
         return NavigationState(activeTag, rootTag, isCustomAnimationUsed)
     }
@@ -77,7 +82,7 @@ class Navigator @Inject constructor(private val activity: AppCompatActivity,
         fragmentManager.fragments
                 .filter { it.tag!!.contains(activity.applicationContext.packageName) }
                 .forEach {
-                    fragmentMap[it.tag!!] = Screen(it, BackStrategy.KEEP) //FIXME
+                    fragmentMap[it.tag!!] = Screen(it, BackStrategy.KEEP)
                 }
 
         fragmentManager.inTransaction {
@@ -96,7 +101,7 @@ class Navigator @Inject constructor(private val activity: AppCompatActivity,
                                            withCustomAnimation: Boolean = false,
                                            arg: Bundle = Bundle.EMPTY,
                                            @Experimental
-                                           backStrategy: BackStrategy = BackStrategy.KEEP) {
+                                           backStrategy: BackStrategy = BackStrategy.DESTROY) {
         val tag = T::class.java.name
         goTo(tag, keepState, withCustomAnimation, arg, backStrategy)
     }
@@ -156,20 +161,55 @@ class Navigator @Inject constructor(private val activity: AppCompatActivity,
     }
 
     fun hasBackStack(): Boolean {
-        return fragmentMap.size > 1 && activeTag != rootTag
+        val b=fragmentMap.size > 0 /*&& activeTag != rootTag*/
+        if(fragmentMap.size==1)destory()
+        return b
+    }
+
+    fun hasBackStack2(): Boolean {
+        val b=fragmentMap.size > 1 && activeTag != rootTag
+        return b
+    }
+
+    fun fragmetGoBack() {
+        val b=fragmentMap.size > 0
+        if(b){
+            if(fragmentMap.size==1)destory()
+            else{
+                goBack()
+            }
+        }
+    }
+
+    fun destory(){
+         fragmentMap.forEach{
+             fragmentManager.inTransaction {
+                 remove(it.value.fragment)
+             }
+         }
+         activeTag=null
+         fragmentMap.clear()
+     }
+
+    fun destory(tag:String){
+        fragmentMap.remove(tag)
     }
 
     fun goBack() {
+        val b=fragmentMap.size > 1 && activeTag != rootTag
+        if(!b)return
         val screen = fragmentMap[activeTag]
-        val backStrategy = screen?.backStrategy
-        val isKeep = backStrategy is BackStrategy.KEEP
+        var backStrategy = screen?.backStrategy
+        var isKeep = backStrategy is BackStrategy.KEEP
+//        backStrategy = BackStrategy.DESTROY
+//        isKeep=false
         fragmentManager.inTransaction {
             if (isCustomAnimationUsed)
                 setCustomAnimations(0, R.anim.slide_out_finish)
             if (isKeep) {
                 hide(screen?.fragment)
             } else if (backStrategy is BackStrategy.DESTROY) {
-                remove(screen.fragment)
+                remove(screen?.fragment)
             }
         }
 

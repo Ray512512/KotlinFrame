@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Locale;
 
 
-
 public class TimeUtils {
     /**
      * 毫秒与毫秒的倍数
@@ -46,7 +45,9 @@ public class TimeUtils {
 
     public static final SimpleDateFormat HOURLY_FORECAST_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
-    public static final SimpleDateFormat API_TIME = new SimpleDateFormat("yyyyMMddHH", Locale.getDefault());
+    public static final SimpleDateFormat API_TIME = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+
+    public static final SimpleDateFormat MONEY_DAY_HH_MM = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
 
     /**
      * 将时间戳转为时间字符串
@@ -67,7 +68,7 @@ public class TimeUtils {
      * @param format       时间格式
      * @return 时间字符串
      */
-    public static String milliseconds2String(long milliseconds, SimpleDateFormat format) {
+    public  synchronized static  String milliseconds2String(long milliseconds, SimpleDateFormat format) {
         return format.format(new Date(milliseconds));
     }
 
@@ -141,7 +142,7 @@ public class TimeUtils {
      * @param format 时间格式
      * @return 时间字符串
      */
-    public static String date2String(Date time, SimpleDateFormat format) {
+    public synchronized static String date2String(Date time, SimpleDateFormat format) {
         return format.format(time);
     }
 
@@ -184,6 +185,7 @@ public class TimeUtils {
                 return milliseconds / HOUR;
             case DAY:
                 return milliseconds / DAY;
+            default:
         }
         return -1;
     }

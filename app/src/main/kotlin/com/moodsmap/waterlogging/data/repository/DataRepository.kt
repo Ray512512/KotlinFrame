@@ -1,11 +1,11 @@
 package com.moodsmap.waterlogging.data.repository
 
-import com.moodsmap.waterlogging.data.api.domain.cache.MemoryCache
-import com.moodsmap.waterlogging.data.api.domain.entity.simple.Warning
-import com.moodsmap.waterlogging.data.api.domain.fetcher.result_listener.RequestType
+import com.moodsmap.waterlogging.data.domain.cache.MemoryCache
+import com.moodsmap.waterlogging.data.domain.entity.simple.Warning
+import com.moodsmap.waterlogging.data.domain.fetcher.result_listener.RequestType
 import com.moodsmap.waterlogging.data.api.service.ApiService
 import com.moodsmap.waterlogging.di.scope.PerActivity
-import com.moodsmap.waterlogging.presentation.utils.extensions.handleResult
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.handleResult
 import io.reactivex.Flowable
 import javax.inject.Inject
 

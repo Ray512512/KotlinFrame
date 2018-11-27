@@ -5,10 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="text_blue">#0076FF</color>
     <color name="text_black">#333333</color>
-    <color name="mainColor">#83DC3B</color>
     <color name="white">#ffffff</color>
     <color name="pressColor">#32f1f1f1</color>
-    <color name="mainColor_press">#8088DD88</color>
-
+    <color name="mainColor_press">#80F73840</color>
+    <color name="mainColor_start">#FF6732</color>
+    <color name="mainColor">#F73840</color>
 
 </resources>

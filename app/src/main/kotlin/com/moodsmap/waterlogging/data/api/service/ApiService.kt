@@ -1,7 +1,7 @@
 package com.moodsmap.waterlogging.data.api.service
 
-import com.moodsmap.waterlogging.data.api.domain.entity.BaseRes
-import com.moodsmap.waterlogging.data.api.domain.entity.simple.Warning
+import com.moodsmap.waterlogging.data.domain.entity.BaseRes
+import com.moodsmap.waterlogging.data.domain.entity.simple.Warning
 import io.reactivex.Flowable
 import retrofit2.http.GET
 

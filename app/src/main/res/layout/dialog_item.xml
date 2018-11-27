@@ -8,49 +8,77 @@
 
     <LinearLayout
         android:id="@+id/container"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
         android:background="@drawable/dialog_shape"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:text="手机号修改成功"
+            android:maxLines="10"
+            android:visibility="gone"
             android:textColor="@android:color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/dialog_img"
+            android:src="@mipmap/ic_error"/>
 
         <TextView
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:ellipsize="end"
+            android:text="手机号修改成功"
             android:maxLines="10"
-            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/text_1"
             android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/positiveButton"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="5dp"
+            android:layout_height="40dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="14sp" />
+            android:layout_gravity="end"
+            android:visibility="gone"
+            android:id="@+id/dialog_btn_liner"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/negativeButton"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/text_1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:visibility="gone"
+                android:textSize="14sp" />
+            <Button
+                android:id="@+id/positiveButton"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:textColor="@color/mainColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

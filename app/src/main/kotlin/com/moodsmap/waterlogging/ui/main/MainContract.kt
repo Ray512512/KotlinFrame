@@ -7,7 +7,6 @@ import com.moodsmap.waterlogging.presentation.base_mvp.api.ApiContract
  */
 interface MainContract {
     interface View : ApiContract.View {
-        fun loadLegend(legend: Int)
     }
 
     interface Presenter : ApiContract.Presenter<View> {

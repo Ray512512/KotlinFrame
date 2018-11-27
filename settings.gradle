@@ -1,1 +1,3 @@
-include ':app', ':libs:baseMVP','libs:UpdateAppUtils','libs:multitem','libs:magicindicator','libs:spruce','libs:multi-image-selector'
+include ':app', ':libs:baseMVP','libs:UpdateAppUtils','libs:multitem','libs:magicindicator','libs:spruce','libs:multi-image-selector',
+        'libs:easypopup','libs:picture_library','libs:ucrop'
+

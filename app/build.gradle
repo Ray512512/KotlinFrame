@@ -57,6 +57,24 @@ android {
                     outputFileName = "moodsmap-${variant.versionCode}-${variant.versionName}-${releaseTime()}.apk"
                 }
             }
+            ndk {
+                // 需要将 x86 架构过滤掉
+                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+            }
+            buildConfigField 'Boolean','IS_DEBUG',"false"
+        }
+        debug {
+            minifyEnabled false
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "LittleTurtle-debug-${variant.versionName}-${releaseTime()}.apk"
+                }
+            }
+            ndk {
+                // 需要将 x86 架构过滤掉
+                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+            }
+            buildConfigField 'Boolean','IS_DEBUG',"true"
         }
     }
     sourceSets {
@@ -77,7 +95,7 @@ ext.rxBusVersion = '1.0.5'
 ext.retrofitVersion = '2.3.0'
 ext.loggerVersion = '2.2.0'
 ext.daggerVersion = '2.11'
-ext.glideVersion = '4.0.0'
+ext.glideVersion = '4.7.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -89,7 +107,8 @@ dependencies {
     implementation project(':libs:magicindicator')
     implementation project(':libs:spruce')
     implementation project(':libs:multi-image-selector')
-
+    implementation project(':libs:easypopup')
+    implementation project(':libs:picture_library')
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
@@ -118,6 +137,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${glideVersion}"
     implementation "com.github.bumptech.glide:okhttp3-integration:${glideVersion}"
     kapt "com.github.bumptech.glide:compiler:${glideVersion}"
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
 
     //DI
     implementation "com.google.dagger:dagger:${daggerVersion}"
@@ -141,6 +161,13 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21'
     implementation 'com.github.ybq:Android-SpinKit:1.1.0'
     implementation 'com.github.zyyoona7:EasyPopup:1.1.1'
+
+    //协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.20'
+
+    // 网页进度条
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
 }
 
 configurations.all {

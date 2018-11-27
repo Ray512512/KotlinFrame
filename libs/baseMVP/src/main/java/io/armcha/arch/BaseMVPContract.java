@@ -2,6 +2,8 @@ package io.armcha.arch;
 
 
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Bundle;
 
 /**
@@ -32,5 +34,8 @@ public interface BaseMVPContract {
         void onPresenterCreate();
 
         void onPresenterDestroy();
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+        void onLifecycleChanged(LifecycleOwner owner, Lifecycle.Event event);
     }
 }

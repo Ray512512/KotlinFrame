@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AMapUtil {
+    public static final String Kilometer = "\u516c\u91cc";// "公里";
+    public static final String Meter = "\u7c73";// "米";
     /**
      * 判断edittext是否null
      */
@@ -53,19 +55,19 @@ public class AMapUtil {
         if (lenMeter > 10000) // 10 km
         {
             int dis = lenMeter / 1000;
-            return dis + ChString.Kilometer;
+            return dis + Kilometer;
         }
 
         if (lenMeter > 1000) {
             float dis = (float) lenMeter / 1000;
             DecimalFormat fnum = new DecimalFormat("##0.0");
             String dstr = fnum.format(dis);
-            return dstr + ChString.Kilometer;
+            return dstr + Kilometer;
         }
 
         if (lenMeter > 100) {
             int dis = lenMeter / 50 * 50;
-            return dis + ChString.Meter;
+            return dis + Meter;
         }
 
         int dis = lenMeter / 10 * 10;
@@ -73,7 +75,7 @@ public class AMapUtil {
             dis = 10;
         }
 
-        return dis + ChString.Meter;
+        return dis + Meter;
     }
 
     public static boolean IsEmptyOrNullString(String s) {

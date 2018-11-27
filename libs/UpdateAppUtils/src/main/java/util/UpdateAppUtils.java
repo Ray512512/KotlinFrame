@@ -2,6 +2,7 @@ package util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -137,19 +138,20 @@ public class UpdateAppUtils {
 
     }
 
+    public static final String EXITACTION = "action.exit";
     private void realUpdate() {
-        ConfirmDialog dialog = new ConfirmDialog(activity, ConfirmDialog.TYPE_UPDATE, new Callback() {
+        ConfirmDialog dialog = new ConfirmDialog(activity, ConfirmDialog.TYPE_UPDATE,isForce, new Callback() {
             @Override
             public void callback(int position) {
                 switch (position){
                     case 0:  //cancle
-                        if (isForce)System.exit(0);
+                        if (isForce) {
+                            activity.sendBroadcast(new Intent(EXITACTION));
+                        }
                         break;
-
                     case 1:  //sure
                         if (downloadBy == DOWNLOAD_BY_APP) {
                             if (isWifiConnected(activity)){
-//                                DownloadAppUtils.downloadForAutoInstall(activity, apkPath, "demo.apk", serverVersionName);
                                 DownloadAppUtils.download(activity, apkPath, serverVersionName);
                             }else {
                                 new ConfirmDialog(activity, new Callback() {
@@ -157,7 +159,6 @@ public class UpdateAppUtils {
                                     public void callback(int position) {
                                         if (position==1){
                                             DownloadAppUtils.download(activity, apkPath, serverVersionName);
-                                            //DownloadAppUtils.downloadForAutoInstall(activity, apkPath, "demo.apk", serverVersionName);
                                         }else {
                                             if (isForce)activity.finish();
                                         }
@@ -177,8 +178,12 @@ public class UpdateAppUtils {
         if (!TextUtils.isEmpty(updateInfo)){
             content = "更新内容\n"+updateInfo;
         }
-        dialog .setContent("发现新版本V"+serverVersionName,content, R.string.next_time,R.string.update_now);
-        dialog.setCancelable(false);
+        int cancleBtn=R.string.next_time;
+        if(isForce){
+            cancleBtn=R.string.quit_app;
+        }
+        dialog .setContent("发现新版本V"+serverVersionName,content.replace("\\n", "\n"), cancleBtn,R.string.update_now);
+        dialog.setCancelable(!isForce);
         dialog.show();
     }
 

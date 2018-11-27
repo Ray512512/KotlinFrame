@@ -1,5 +1,9 @@
 package com.moodsmap.waterlogging.presentation.utils
 
+import android.app.ActivityManager
+import android.content.Context
+import android.view.View
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.onClick
 import java.io.*
 
 /**
@@ -53,5 +57,24 @@ class Utils {
             }
             return null
         }
+        fun getCurrentProcessName(context: Context):String{
+            val pid = android.os.Process.myPid()
+            var processName = ""
+            val manager = context.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            for (i in  manager.runningAppProcesses){
+                if(i.pid == pid){
+                    processName=i.processName
+                    break
+                }
+            }
+            return processName;
+        }
+
+        @JvmStatic
+        fun onClick(v: View, function: () -> Unit){
+            v.onClick { function() }
+        }
     }
+
+
 }

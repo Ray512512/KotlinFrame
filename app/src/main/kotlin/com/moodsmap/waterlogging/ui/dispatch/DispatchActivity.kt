@@ -3,9 +3,9 @@ package com.moodsmap.waterlogging.ui.dispatch
 import android.Manifest
 import android.os.Bundle
 import com.moodsmap.waterlogging.R
-import com.moodsmap.waterlogging.data.api.domain.cache.User
+import com.moodsmap.waterlogging.data.domain.cache.User
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BaseActivity
-import com.moodsmap.waterlogging.presentation.utils.extensions.start
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.start
 import com.moodsmap.waterlogging.ui.dispatch.login.LoginFragment
 import com.moodsmap.waterlogging.ui.main.MainActivity
 import pl.tajchert.nammu.Nammu

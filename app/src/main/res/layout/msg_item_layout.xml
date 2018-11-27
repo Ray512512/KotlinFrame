@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.moodsmap.waterlogging.view.layout.SlidingButtonView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:id="@+id/like_item_slide"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_left"
+                android:background="@color/mainBg"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                tools:ignore="Suspicious0dp">
+
+                <com.moodsmap.waterlogging.view.checkBox.SmoothCheckBox
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:strikeWidth="0dp"
+                    app:duration="300"
+                    app:trimColor="@color/mainColor"
+                    app:tickColor="@color/white"
+                    app:untrimColor="@color/text_e"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/like_item_checkbox"/>
+
+            </RelativeLayout>
+
+          <!--  <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/msg_item_layout"/>-->
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="105dp"
+            android:layout_toRightOf="@+id/layout_content"
+            android:layout_alignTop="@+id/layout_content"
+            android:layout_alignBottom="@+id/layout_content"
+            android:layout_height="wrap_content"
+            android:background="@color/mainBg"
+            android:id="@+id/fra_delete"
+            >
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@mipmap/ic_delete_c"
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
+    </RelativeLayout>
+
+</com.moodsmap.waterlogging.view.layout.SlidingButtonView>

@@ -45,6 +45,22 @@ class DownloadAppUtils {
         context.startActivity(intent);
     }
 
+    private static final String path = "/sdcard/download/apk";
+    private static boolean isFileExist(String fileName) {
+        File file = new File(fileName);
+        file.isFile();
+        return file.exists();
+    }
+    public static String getDefaultPath() {
+        try {
+            if (!isFileExist(path)) {
+                new File(path).mkdirs();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return path;
+    }
 
 
     public static void download(final Context context, String url,final String serverVersionName) {
@@ -52,7 +68,7 @@ class DownloadAppUtils {
         String packageName = context.getPackageName();
         String filePath = null;
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {//外部存储卡
-            filePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            filePath = getDefaultPath();
         } else {
             Log.i(TAG, "没有SD卡");
             return;
@@ -69,6 +85,7 @@ class DownloadAppUtils {
                 .setListener(new FileDownloadLargeFileListener() {
                     @Override
                     protected void pending(BaseDownloadTask task, long soFarBytes, long totalBytes) {
+                        Toast.makeText(context,"开始下载安装包，下拉通知栏可查看下载进度",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -97,14 +114,11 @@ class DownloadAppUtils {
     }
 
 
-
-
     private static void send(Context context,int progress,String serverVersionName) {
-        Intent intent = new Intent("teprinciple.update");
+        Intent intent = new Intent(context,UpdateAppReceiver.class);
         intent.putExtra("progress",progress);
         intent.putExtra("title",serverVersionName);
         context.sendBroadcast(intent);
     }
-
 
 }

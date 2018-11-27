@@ -41,4 +41,23 @@
     <color name="login_text">#BBB</color>
     <color name="black">#000000</color>
     <color name="title">#333</color>
+
+
+    <color name="mainColor_start">#FF6732</color>
+    <color name="mainColor">#F73840</color>
+    <color name="text_1">#333333</color>
+    <color name="text_2">#666666</color>
+    <color name="text_3">#999999</color>
+    <color name="text_c">#cccccc</color>
+    <color name="text_e">#eeeeee</color>
+    <color name="text_d7">#D7D7D7</color>
+    <color name="text_e3">#e3e3e3</color>
+    <color name="text_e_press">#80eeeeee</color>
+    <color name="text_d">#dddddd</color>
+    <color name="mainBg">#F5F5F5</color>
+    <color name="white_alpha">#e4FFFFFF</color>
+    <color name="white_half">#80FFFFFF</color>
+    <color name="black_half">#80000000</color>
+    <color name="mine_bg">#fff5f5f5</color>
+    <color name="switchColor">#4CD864</color>
 </resources>

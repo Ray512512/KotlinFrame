@@ -1,10 +1,10 @@
 package com.moodsmap.waterlogging.presentation.base_mvp.api
 
 import android.support.annotation.CallSuper
-import com.moodsmap.waterlogging.data.api.domain.fetcher.Fetcher
-import com.moodsmap.waterlogging.data.api.domain.fetcher.Status
-import com.moodsmap.waterlogging.data.api.domain.fetcher.result_listener.RequestType
-import com.moodsmap.waterlogging.data.api.domain.fetcher.result_listener.ResultListener
+import com.moodsmap.waterlogging.data.domain.fetcher.Fetcher
+import com.moodsmap.waterlogging.data.domain.fetcher.Status
+import com.moodsmap.waterlogging.data.domain.fetcher.result_listener.RequestType
+import com.moodsmap.waterlogging.data.domain.fetcher.result_listener.ResultListener
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BaseContract
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BasePresenter
 import io.reactivex.Completable
