@@ -14,6 +14,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by ray on 2016/3/27.
@@ -68,7 +70,7 @@ public class SPUtils {
             setObject(key, value,false);
             return;
         }
-        SharedPreferencesCompat.EditorCompat.getInstance().apply(edit);
+        SharedPreferencesCompat.apply(edit);
     }
     public static void put(String key, Object value,SharedPreferences sp) {
         SharedPreferences.Editor edit = sp.edit();
@@ -86,7 +88,7 @@ public class SPUtils {
             setObject(key, value,sp);
             return;
         }
-        SharedPreferencesCompat.EditorCompat.getInstance().apply(edit);
+        SharedPreferencesCompat.apply(edit);
     }
 
     /**
@@ -264,5 +266,47 @@ public class SPUtils {
 
     private static void uploadCrash(Exception e){
 //        CrashReport.postCatchedException(e);
+    }
+
+    /**
+     * 创建一个解决SharedPreferencesCompat.apply方法的一个兼容类
+     *
+     */
+    private static class SharedPreferencesCompat {
+        private static final Method sApplyMethod = findApplyMethod();
+
+        /**
+         * 反射查找apply的方法
+         *
+         * @return
+         */
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        private static Method findApplyMethod() {
+            try {
+                Class clz = SharedPreferences.Editor.class;
+                return clz.getMethod("apply");
+            } catch (NoSuchMethodException e) {
+            }
+
+            return null;
+        }
+
+        /**
+         * 如果找到则使用apply执行，否则使用commit
+         *
+         * @param editor
+         */
+        public static void apply(SharedPreferences.Editor editor) {
+            try {
+                if (sApplyMethod != null) {
+                    sApplyMethod.invoke(editor);
+                    return;
+                }
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalAccessException e) {
+            } catch (InvocationTargetException e) {
+            }
+            editor.commit();
+        }
     }
 }
