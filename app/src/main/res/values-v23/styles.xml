@@ -16,7 +16,7 @@
 
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowBackground">@drawable/image_welcome</item>
+        <item name="android:windowBackground">@drawable/ic_launcher</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

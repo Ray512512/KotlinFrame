@@ -75,6 +75,8 @@
         <attr name="tickColor" format="color|reference" />
         <!-- 对勾宽度 -->
         <attr name="tickWidth" format="dimension|reference" />
+        <attr name="canClick" format="boolean" />
+
     </declare-styleable>
 
     <!-- 条形控制控件自定义属性 -->
@@ -127,5 +129,62 @@
             <enum name="Half" value="0" />
             <enum name="Full" value="1" />
         </attr>
+    </declare-styleable>
+
+    <!-- 标题模板自定义属性 -->
+    <declare-styleable name="TemplateTitle">
+        <!-- 标题文案 -->
+        <attr name="titleText" format="string"/>
+        <!-- 是否有back按钮 -->
+        <attr name="canBack" format="boolean"/>
+        <!-- back按钮文案 -->
+        <attr name="backText" format="string"/>
+        <!-- 右侧更多功能按钮图片 -->
+        <attr name="moreImg" format="reference"/>
+        <attr name="moreImg2" format="reference"/>
+        <!-- 右侧更多功能按钮文字 -->
+        <attr name="moreText" format="string"/>
+        <attr name="moreTextColor" format="integer"/>
+        <attr name="needBottomLine" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="FloatingLabelEditText">
+        <attr name="j_fle_colorHighlight" format="color" />
+        <attr name="j_fle_colorDivider" format="color" />
+        <attr name="j_fle_colorError" format="color" />
+        <attr name="j_fle_hint" format="string" />
+        <attr name="j_fle_thickness" format="dimension" />
+        <attr name="j_fle_label_horizontal_margin" format="dimension" />
+        <attr name="j_fle_label_vertical_margin" format="dimension" />
+        <attr name="j_fle_label_textSize" format="dimension" />
+        <attr name="j_fle_divider_vertical_margin" format="dimension" />
+        <attr name="j_fle_error_horizontal_margin" format="dimension" />
+        <attr name="j_fle_error_textSize" format="dimension" />
+        <attr name="j_fle_float_anim_duration" format="integer" />
+        <attr name="j_fle_error_anim_duration" format="integer" />
+        <attr name="j_fle_error_disable" format="boolean" />
+        <attr name="j_fle_multiline_mode_enable" format="boolean" />
+        <attr name="j_fle_enable_clear_btn" format="boolean" />
+        <attr name="j_fle_clear_btn_size" format="dimension" />
+        <attr name="j_fle_clear_btn_color" format="color" />
+        <attr name="j_fle_clear_btn_horizontal_margin" format="dimension" />
+        <attr name="j_fle_clear_btn_id" format="reference" />
+        <attr name="j_fle_show_clear_btn_without_focus" format="boolean" />
+        <attr name="j_fle_show_text_length" format="boolean" />
+        <attr name="j_fle_text_length_display_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MyEdit">
+        <attr name="e_type" format="enum">
+            <enum name="phone" value="0" />
+            <enum name="psw" value="1" />
+            <enum name="text" value="2" />
+            <enum name="sex" value="3" />
+            <enum name="realname" value="4" />
+            <enum name="idcard" value="5" />
+            <enum name="indate" value="6" />
+            <enum name="invitecode" value="7" />
+        </attr>
+        <attr name="e_text" format="string" />
     </declare-styleable>
 </resources>

@@ -60,4 +60,8 @@
     <color name="black_half">#80000000</color>
     <color name="mine_bg">#fff5f5f5</color>
     <color name="switchColor">#4CD864</color>
+    <color name="text_blue1">#1173CB</color>
+    <color name="line">#DDDDDD</color>
+    <color name="rating">#FFC332</color>
+    <color name="rating_2">#80FFC332</color>
 </resources>

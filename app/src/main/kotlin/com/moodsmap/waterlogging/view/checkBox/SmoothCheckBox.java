@@ -56,6 +56,8 @@ public class SmoothCheckBox extends View implements View.OnClickListener {
  private int center;
  // 是否是选中
  private boolean isChecked=false;
+ private boolean canClick;
+
  //对勾向下的长度
  private float downLength;
  //对勾向上的长度
@@ -109,6 +111,8 @@ public class SmoothCheckBox extends View implements View.OnClickListener {
   borderColor = a.getColor(R.styleable.SmoothCheckBox_untrimColor, getResources().getColor(android.R.color.darker_gray));
   trimColor = a.getColor(R.styleable.SmoothCheckBox_trimColor, getResources().getColor(R.color.mainColor));
   tickColor = a.getColor(R.styleable.SmoothCheckBox_tickColor, getResources().getColor(android.R.color.white));
+  canClick = a.getBoolean(R.styleable.SmoothCheckBox_canClick, true);
+
   a.recycle();
  
   trimPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -292,7 +296,8 @@ public class SmoothCheckBox extends View implements View.OnClickListener {
  
  @Override
  public void onClick(View view) {
-  toggle();
+  if(canClick)
+   toggle();
  }
  
  /**

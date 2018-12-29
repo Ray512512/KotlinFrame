@@ -168,6 +168,8 @@ dependencies {
 
     // 网页进度条
     implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
+    //星星控件
+    implementation 'com.github.varunest:sparkbutton:1.0.5'
 }
 
 configurations.all {

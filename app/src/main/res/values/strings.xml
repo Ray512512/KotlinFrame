@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AppName</string>
-    <string name="app_tag_name">Lottery</string>
+    <string name="app_tag_name">AppName</string>
 
     <string name="error_title">Something went wrong</string>
     <string name="hint_input_account">输入手机号</string>
@@ -29,5 +29,14 @@
     <string name="xlistview_footer_hint_ready">松开立即加载更多</string>
     <string name="xlistview_footer_hint_loading">正在加载更多的数据...</string>
     <string name="quit_ask">再点击一次退出应用</string>
+    <string name="hint_input_psw">密码</string>
+    <string name="nick_hint">输入您的昵称</string>
+    <string name="realname">真实姓名</string>
+    <string name="idcard_num">身份证号码</string>
+    <string name="idcard_hint">输入您的身份证号码</string>
+    <string name="card_indate">证件有效期</string>
+    <string name="indate_hint">选择您的证件有效期</string>
+    <string name="hint_invite">邀请码（选填）</string>
+    <string name="name_hint">输入您的真实姓名</string>
 
 </resources>

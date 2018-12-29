@@ -18,7 +18,7 @@ import com.moodsmap.waterlogging.data.domain.cache.MemoryCache
 
 /**
  */
-@Singleton
+//@Singleton
 class Fetcher @Inject constructor(private val disposable: CompositeDisposable,
                                   private val memoryCache: MemoryCache) {
 

@@ -31,7 +31,7 @@
     </style>
 
     <style name="SplashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/image_welcome</item>
+        <item name="android:windowBackground">@drawable/ic_launcher</item>
     </style>
 
     <style name="Divider" parent="MatchParent">

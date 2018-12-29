@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_below="@+id/et_account"
+    android:id="@+id/my_et_root"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_failed"
+        android:visibility="gone"
+        android:text="error"
+        android:textColor="@color/mainColor"
+        android:layout_marginBottom="-16dp"
+        android:textSize="@dimen/text_2"/>
+
+    <com.moodsmap.waterlogging.view.edittext.floatinglabeledittext.FloatingLabelEditText
+        android:id="@+id/my_et_et"
+        android:layout_below="@+id/tv_failed"
+        android:layout_alignParentLeft="true"
+        android:paddingRight="48dp"
+        android:background="@null"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码"
+        tools:text="123456123456123456123456123456123456123456123456"
+        android:textSize="16sp"
+        android:textColorHint="@color/text_3"
+        android:textColor="@color/text_1"
+
+        app:j_fle_colorHighlight="@color/text_1"
+        app:j_fle_colorDivider="@color/text_c"
+        app:j_fle_hint="@string/hint_input_psw"
+        app:j_fle_thickness="1dp"
+        app:j_fle_label_horizontal_margin="0dp"
+        app:j_fle_label_vertical_margin="8dp"
+        app:j_fle_divider_vertical_margin="4dp"
+        app:j_fle_label_textSize="14sp"
+        app:j_fle_float_anim_duration="300"
+        app:j_fle_error_disable="true"
+        />
+    <!--<EditText
+        android:id="@+id/my_et_et"
+        android:layout_below="@+id/tv_failed"
+        android:background="@null"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/hint_input_psw"
+        android:textSize="16sp"
+        android:textColorHint="@color/text_3"
+        android:textColor="@color/text_1"
+         />-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/my_et_liner_right"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@+id/my_et_et"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:visibility="gone"
+            android:id="@+id/img_pws_delete"
+            android:src="@mipmap/ic_delete"/>
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:visibility="gone"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/img_pws_show"
+        android:src="@mipmap/ic_show_2"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/my_et_et"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:id="@+id/pws_line"
+        android:visibility="gone"
+        android:background="@color/text_1"/>
+
+</RelativeLayout>
