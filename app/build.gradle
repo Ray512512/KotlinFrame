@@ -32,9 +32,6 @@ android {
         multiDexEnabled true
         addFieldsAndPlaceholders(it, [
                 APPID_AMAP : APPID_AMAP,
-                WEATHER_KEY: WEATHER_KEY,
-                FIR_ID   : FIR_API_ID,
-                FIR_TOKEN: FIR_API_TOKEN
         ])
         resValue "string", "updatefun_provider_file_authorities", "com.gospell.xs1.app.fileprovider"
         ndk {
