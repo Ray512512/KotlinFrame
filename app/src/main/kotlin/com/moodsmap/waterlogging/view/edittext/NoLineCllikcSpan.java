@@ -4,6 +4,9 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
+/**
+ * 无下划线span
+ */
 public class NoLineCllikcSpan extends ClickableSpan {
 
     public NoLineCllikcSpan() {

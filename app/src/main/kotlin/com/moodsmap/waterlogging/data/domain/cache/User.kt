@@ -1,3 +1,4 @@
+/*
 package com.moodsmap.waterlogging.data.domain.cache
 
 import android.text.TextUtils
@@ -9,9 +10,11 @@ import java.io.ObjectStreamException
 import java.io.Serializable
 
 
+*/
 /**
  * Created by Ray on 2018/3/21.
- */
+ *//*
+
 class User : Serializable, Cloneable {
 
     companion object {
@@ -64,4 +67,4 @@ class User : Serializable, Cloneable {
         return !TextUtils.isEmpty(token)
     }
 
-}
+}*/

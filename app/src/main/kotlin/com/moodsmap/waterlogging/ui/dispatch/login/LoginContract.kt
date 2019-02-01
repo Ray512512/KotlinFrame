@@ -8,11 +8,11 @@ import com.moodsmap.waterlogging.presentation.base_mvp.base.BaseContract
 interface LoginContract {
 
     interface View : BaseContract.View {
-
-        fun onLoginSucceed()
+        fun onLoginSucceed(info: Any)
+        fun onLoginFailed(msg:String)
     }
 
     interface Presenter : BaseContract.Presenter<View>{
-        fun requestLogin(account:String,code:String)
+        fun requestLoginByPsw(account:String, psw:String,isShow:Boolean=true)
     }
 }

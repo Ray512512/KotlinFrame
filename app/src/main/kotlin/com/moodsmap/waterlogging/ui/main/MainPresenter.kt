@@ -12,9 +12,9 @@ open class MainPresenter @Inject constructor(private val dataRepository: DataRep
 
     override fun onPresenterCreate() {
         super.onPresenterCreate()
-        fetch(dataRepository.getWarning(),success = {
+        /*fetch(dataRepository.getWarning(),success = {
             it.isEmpty()
-        })
+        })*/
     }
 
 }

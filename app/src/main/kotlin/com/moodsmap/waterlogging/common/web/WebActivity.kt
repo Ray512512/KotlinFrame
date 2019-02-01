@@ -54,7 +54,8 @@ class WebActivity :  BaseActivity<WebContract.View, WebContract.Presenter>(), We
         mUrl = intent.getStringExtra(EXTRA_URL)
         mTitle = intent.getStringExtra(EXTRA_TITLE)
 
-        webAgent.setWebViewSetting(webView,mUrl!!)
+        webAgent.setWebViewSetting(webView)
+        webAgent.loadUrl(mUrl!!)
         webAgent.callBack=this
 
         findViewById<TextView>(R.id.tv_title).text = mTitle

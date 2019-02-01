@@ -18,6 +18,7 @@ interface BaseContract {
 
         fun showNetWorkErrorView(dealErrorType: DealErrorType)
         fun showErrorView(dealErrorType: DealErrorType)
+        fun showErrorView(str: String)
         fun showDataView()
         fun showEmptyView()
     }

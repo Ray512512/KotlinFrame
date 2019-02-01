@@ -1,7 +1,9 @@
 package com.moodsmap.waterlogging.di.module
 
+import android.util.Log
 import com.moodsmap.waterlogging.BuildConfig
 import com.moodsmap.waterlogging.data.api.ApiConstants
+import com.moodsmap.waterlogging.data.api.HttpHeadInterceptor
 import com.moodsmap.waterlogging.data.api.service.ApiService
 import dagger.Module
 import dagger.Provides
@@ -36,10 +38,24 @@ class ApiModule {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BASIC
             okHttpBuilder.addInterceptor(logging)
+            okHttpBuilder.addInterceptor(getBodyLogInterceptor())
         }
-        okHttpBuilder.readTimeout(15.toLong(), TimeUnit.SECONDS)
-        okHttpBuilder.connectTimeout(15.toLong(), TimeUnit.SECONDS)
+        okHttpBuilder.addInterceptor(HttpHeadInterceptor())
+        okHttpBuilder.readTimeout(30.toLong(), TimeUnit.SECONDS)
+        okHttpBuilder.connectTimeout(30.toLong(), TimeUnit.SECONDS)
         return okHttpBuilder
+    }
+
+    /**
+     * 日志打印拦截
+     */
+    private fun getBodyLogInterceptor():HttpLoggingInterceptor{
+        val loggingInterceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+            //打印retrofit日志
+            Log.i("RetrofitLog", "retrofitBack = $message")
+        })
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        return loggingInterceptor
     }
 
     @Singleton
@@ -69,7 +85,7 @@ class ApiModule {
 
 
 
-    @Singleton
+//    @Singleton
     @Provides
     fun provideCompositeDisposable() = CompositeDisposable()
 }

@@ -15,6 +15,9 @@ import android.view.ViewTreeObserver;
 
 import com.moodsmap.waterlogging.R;
 
+/**
+ * 图片文字居中按钮
+ */
 public class VectorCompatRadioButton extends AppCompatRadioButton {
 
     private boolean isTintDrawableInTextColor;

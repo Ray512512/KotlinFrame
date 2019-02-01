@@ -26,6 +26,7 @@
     <color name="layer_color_1">#A1C9E9</color>
     <color name="transparent">#00000000</color>
     <color name="textNormal">#656565</color>
+    <color name="text_f1">#f1f1f1</color>
 
     <!--weather-->
     <color name="greenery">#7DA743</color>
@@ -43,8 +44,8 @@
     <color name="title">#333</color>
 
 
-    <color name="mainColor_start">#FF6732</color>
-    <color name="mainColor">#F73840</color>
+    <!--<color name="mainColor_start">#FF6732</color>-->
+    <!--<color name="mainColor">#F73840</color>-->
     <color name="text_1">#333333</color>
     <color name="text_2">#666666</color>
     <color name="text_3">#999999</color>
@@ -64,4 +65,5 @@
     <color name="line">#DDDDDD</color>
     <color name="rating">#FFC332</color>
     <color name="rating_2">#80FFC332</color>
+    <color name="text_f0">#f0f0f0</color>
 </resources>

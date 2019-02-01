@@ -15,6 +15,8 @@ import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.moodsmap.waterlogging.data.domain.cache.MemoryCache
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.showToast
+import com.moodsmap.waterlogging.ui.dispatch.login.LoginAgent
 
 /**
  */
@@ -82,28 +84,59 @@ class Fetcher @Inject constructor(private val disposable: CompositeDisposable,
     private fun ResultListener.onError(requestType: RequestType): (Throwable) -> Unit {
         return {
             requestMap.replace(requestType, Status.ERROR)
-            val msg = if(it is ApiException){ it.msg }else{ it.message }
             view?.stopLoadingDialog()
-            if(!isCommonError(requestType,msg)){
-                onRequestError(requestType,msg)
-            }else{
-                onRequestError(requestType,"")
+            if (!isCommonError(requestType, it)) {
+                onRequestError(requestType, it)
+            } else {
+                onRequestError(requestType, "")
             }
-            log("11---"+Gson().toJson(it))
+            log("11---" + Gson().toJson(it))
         }
     }
 
-    fun isCommonError(requestType: RequestType,errorMessage: String?):Boolean{
-        var b=false
-        when{
-            !NetUtils.checkNetWork(App.instance)->{ //断网
-                view?.showNetWorkErrorView(requestType.dealErrorType)
-                b=true
+    fun isCommonError(requestType: RequestType, it: Throwable): Boolean {
+        val errorMessage = if (it is ApiException) {
+            it.msg
+        } else {
+            it.message
+        }
+        var b = false
+        fun showErrorView() {
+            if (requestType == RequestType.TYPE_NONE) {
+                errorMessage?.let {
+                    //过滤无需处理的异常
+                    if(errorMessage.startsWith("java.lang.Object")){
+                        return
+                    }
+                    view?.showErrorView(it)
+                }
             }
-            errorMessage!=null&&(errorMessage.toLowerCase().contains("timeout")||
-                    errorMessage.toLowerCase().contains("15000ms"))->{ //连接超时
+        }
+        when {
+            !NetUtils.checkNetWork(App.instance) -> { //断网
+                view?.showNetWorkErrorView(requestType.dealErrorType)
+                b = true
+            }
+            it is ApiException -> { //服务器公共异常
+                when (it.code) {
+                    ApiException.ERROR_CODE_TOKEN_INVALID -> {
+                        view?.getContext()?.showToast("令牌失效，请重新登录")
+                        App.token = ""
+                        LoginAgent.goLogin()
+                        b = true
+                    }
+                    else -> {
+                        showErrorView()
+                    }
+                }
+            }
+            errorMessage != null && (errorMessage.toLowerCase().contains("timeout") ||
+                    errorMessage.toLowerCase().contains("15000ms")) -> { //连接超时
                 view?.showErrorView(requestType.dealErrorType)
-                b=true
+                b = true
+            }
+            else -> {
+                showErrorView()
             }
         }
         return b

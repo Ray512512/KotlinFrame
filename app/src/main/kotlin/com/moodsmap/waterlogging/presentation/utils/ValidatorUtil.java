@@ -2,6 +2,7 @@ package com.moodsmap.waterlogging.presentation.utils;
 
 import android.text.TextUtils;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressWarnings("ALL")
@@ -20,13 +21,13 @@ public class ValidatorUtil {
     /**
      * 正则表达式:验证手机号
      */
-    private static final String REGEX_MOBILE = "^\\s*$|^(0|86|\\+86|17951)?\\s*(13[0-9]|(15[^4,\\D])|(17[0-9])|(19[0-9])|18[0-9]|14[57])\\s*\\d{4}\\s*\\d{4}\\s*$";
-//    public static final String REGEX_MOBILE = "(^[1]([3|5|8|7|4|9][0-9]{1})[ ]{0,8}[0-9]{4}[ ]{0,8}[0-9]{4})|(^[1]([3|5|8|7|4][0-9]{2})[ ]{0,8}[0-9]{4}[ ]{0,8}[0-9]{3})";
+//    private static final String REGEX_MOBILE = "^\\s*$|^(0|86|\\+86|17951)?\\s*(13[0-9]|(15[^4,\\D])|(17[0-9])|(19[0-9])|18[0-9]|14[57])\\s*\\d{4}\\s*\\d{4}\\s*$";
+    public static final String REGEX_MOBILE = "^((166)|(19[8-9])|(17[01345678])|(13[0-9])|(14[15689])|(15([01235789]))|(18[0-9]))\\d{8}$";
 
     /**
      * 正则表达式:验证验证码
      */
-    public static final String REGEX_VERIFY_CODE = "^[0-9]{4}$";
+    public static final String REGEX_VERIFY_CODE = "^[0-9]{6}$";
 
     /**
      * 正则表达式:验证货物名称(10个汉字)
@@ -53,9 +54,22 @@ public class ValidatorUtil {
      */
     public static final String REGEX_REMARK = "^([\\u4e00-\\u9fa50-9a-zA-Z\\\\?%&=\\\\-_,.\\uff0c\\u3002]{0,20})$";
 
+    /**
+     * 校验密码数字，英文 6-20位
+     */
+//    public static final String REGEX_PSW = "(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$";
+    public static final String REGEX_PSW = "^[A-Za-z0-9]{6,16}$";
+    public static final String REGEX_PSW_WORD = "[a-zA-Z0-9]*";
+
+    /**
+     * 校验邮箱
+     */
+    public static final String REGEX_EMAIL = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+
 
     /**
      * 校验座机号
+     *
      * @param linePhone
      * @return 校验通过返回true，否则返回false
      */
@@ -65,6 +79,7 @@ public class ValidatorUtil {
 
     /**
      * 校验真实姓名
+     *
      * @param realname
      * @return 校验通过返回true，否则返回false
      */
@@ -75,19 +90,22 @@ public class ValidatorUtil {
 
     /**
      * 校验手机号
+     *
      * @param mobile
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isMobile(String mobile) {
-        if(!TextUtils.isEmpty(mobile)&&mobile.length()==11){
+        /*if (!TextUtils.isEmpty(mobile) && mobile.length() == 11) {
             return true;
         }
-        return false;
-//        return Pattern.matches(REGEX_MOBILE, mobile);
+        return false;*/
+        if(TextUtils.isEmpty(mobile))return false;
+        return Pattern.matches(REGEX_MOBILE, mobile);
     }
 
     /**
      * 校验验证码
+     *
      * @param verifyCode
      * @return 校验通过返回true，否则返回false
      */
@@ -98,6 +116,7 @@ public class ValidatorUtil {
 
     /**
      * 校验身份证
+     *
      * @param idCard
      * @return 校验通过返回true，否则返回false
      */
@@ -108,6 +127,7 @@ public class ValidatorUtil {
 
     /**
      * 校验货物名称
+     *
      * @param chinese
      * @return 校验通过返回true，否则返回false
      */
@@ -118,6 +138,7 @@ public class ValidatorUtil {
 
     /**
      * 校验重量体积
+     *
      * @param weight
      * @return 校验通过返回true，否则返回false
      */
@@ -128,6 +149,7 @@ public class ValidatorUtil {
 
     /**
      * 校验价格
+     *
      * @param price
      * @return 校验通过返回true，否则返回false
      */
@@ -137,6 +159,7 @@ public class ValidatorUtil {
 
     /**
      * 校验备注
+     *
      * @param remark
      * @return 校验通过返回true，否则返回false
      */
@@ -144,4 +167,38 @@ public class ValidatorUtil {
         return Pattern.matches(REGEX_REALRNAME, remark);
     }
 
+    /**
+     * 校验邮箱
+     *
+     * @param remark
+     * @return 校验通过返回true，否则返回false
+     */
+    public static boolean isEmail(String email) {
+        return Pattern.matches(REGEX_EMAIL, email);
+    }
+
+    /**
+     * 密码判断
+     *
+     * @param password 密码(包含数字字母)
+     */
+    public static boolean password(String password) {
+        Pattern p = Pattern.compile(REGEX_PSW);
+        Matcher matcher = p.matcher(password);
+        if (matcher.matches()) {
+            return true;
+        } else {
+//            Toast.makeText(context, "请输入6-20位英文字母和数字组合", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+    public static boolean pswKEY(String password) {
+        Pattern p = Pattern.compile(REGEX_PSW_WORD);
+        Matcher matcher = p.matcher(password);
+        if (matcher.matches()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

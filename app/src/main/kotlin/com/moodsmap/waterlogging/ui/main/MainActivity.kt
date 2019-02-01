@@ -1,8 +1,10 @@
 package com.moodsmap.waterlogging.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.moodsmap.waterlogging.R
+import com.moodsmap.waterlogging.data.AppConst
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BaseActivity
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BottomTabBaseActivity
 import com.moodsmap.waterlogging.presentation.kotlinx.extensions.getStatusBarHeight
@@ -49,8 +51,25 @@ class MainActivity : BottomTabBaseActivity(){
         super.onCreate(savedInstanceState)
         mainActivity = this
         initView()
+        tryAction()
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        tryAction()
+    }
+    override fun onResume() {
+        super.onResume()
+        mainActivity = this
+    }
+
+    /**
+     * 解析跳转意图
+     */
+    private fun tryAction(){
+//        val type = intent.getIntExtra(AppConst.IntentKey.TYPE, 0)
+    }
 
     private fun initView() {
 

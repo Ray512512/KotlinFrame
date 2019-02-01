@@ -14,6 +14,11 @@ inline fun <reified T> Activity.start() {
     this.startActivity(Intent(this, T::class.java))
 }
 
+inline fun <reified T> Activity.start(startCode:Int) {
+    this.startActivityForResult(Intent(this, T::class.java),startCode)
+}
+
+
 inline fun <reified T> Activity.start(startCode:Int,arg:Map<String,Any>) {
     this.startActivityForResult(getIntentEx<T>(arg),startCode)
 }
@@ -33,7 +38,7 @@ inline fun <reified T> Activity.getIntentEx(arg:Map<String,Any>):Intent{
     return intent
 }
 
- fun Bundle.putValue(key:String,value:Any):Bundle{
+fun Bundle.putValue(key:String,value:Any):Bundle{
     when (value) {
         is Int -> putInt(key, value)
         is Long -> putLong(key, value)
@@ -42,7 +47,7 @@ inline fun <reified T> Activity.getIntentEx(arg:Map<String,Any>):Intent{
         is Serializable -> putSerializable(key, value)
         else -> throw UnsupportedOperationException("${value.javaClass.simpleName} type not supported yet!!!")
     }
-     return this
+    return this
 }
 
 
@@ -52,9 +57,17 @@ inline fun <reified T> Activity.start2() {
     this.finish()
 }
 
-fun Activity.isPortrait() = this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+inline fun <reified T> Activity.start2(arg:Map<String,Any>) {
+    this.startActivity(getIntentEx<T>(arg))
+    this.finish()
+}
 
-infix fun Activity.takeColor(colorId: Int) = ContextCompat.getColor(this, colorId)
+inline fun <reified T> Activity.start2(startCode:Int,arg:Map<String,Any>) {
+    this.startActivityForResult(getIntentEx<T>(arg),startCode)
+    this.finish()
+}
+
+fun Activity.isPortrait() = this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
 fun Activity.setResult(code:Int,arg:Map<String,Any>){
     val intent=Intent()

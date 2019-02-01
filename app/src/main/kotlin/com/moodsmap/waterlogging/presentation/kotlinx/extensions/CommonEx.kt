@@ -16,7 +16,7 @@ import android.widget.Toast
 import com.moodsmap.waterlogging.App
 import com.moodsmap.waterlogging.data.AppConst
 import com.moodsmap.waterlogging.data.api.exception.ApiException
-import com.moodsmap.waterlogging.data.domain.entity.BaseRes
+import com.moodsmap.waterlogging.data.domain.entity.base.BaseRes
 import com.moodsmap.waterlogging.presentation.utils.FileUtils
 import com.moodsmap.waterlogging.presentation.utils.Lg
 import io.reactivex.BackpressureStrategy
@@ -199,38 +199,6 @@ fun Long.formatTime(): String {
     return res
 }
 
-fun File.getFileRequestMap():HashMap<String, RequestBody> {
-    val map = HashMap<String, RequestBody>()
-    try {
-        val file = FileUtils.getCompressFile(this.path)
-        Lg.v("getFileRequestMap", "${file.length()/1024}")
-        val fileBody = RequestBody.create(AppConst.MediaType.IMAGE, file)
-        map["file\"; filename=\"" + file.name] = fileBody
-    } catch (e: Exception) {
-        throw Exception()
-    }
-    return map
-}
-
-fun HashMap<kotlin.String, kotlin.IntArray>.putWithSelf(k:kotlin.String, v:kotlin.IntArray):HashMap<kotlin.String, kotlin.IntArray>{
-    this[k] = v
-    return this
-}
-
-
-fun <K,V>HashMap<K,V>.putWithSelf(k:K, v:V):HashMap<K, V>{
-    this[k] = v
-    return this
-}
-
-fun <E>ArrayList<E>.put(e:E):ArrayList<E>{
-    add(e)
-    return this
-}
-
-fun Int.getRandom():Int{
-    return Random().nextInt(this)
-}
 
 inline fun <reified T> T.logd(message: () -> String) = Lg.d(T::class.simpleName, message())
 

@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_w_stroke_normal_c_4"
+    >
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="top|left"
+        android:padding="8dp"
+        style="@style/Text_normal"
+        android:minLines="5"
+        />
+    <TextView
+        android:id="@+id/text"
+        style="@style/Text_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="0/100"
+        android:layout_margin="8dp"
+        android:layout_alignBottom="@id/edit"
+        android:layout_alignRight="@id/edit"
+        />
+</RelativeLayout>

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class TimeUtils {
@@ -19,15 +20,19 @@ public class TimeUtils {
     /**
      * 分与毫秒的倍数
      */
-    private static final int MIN  = 60000;
+    public static final int MIN  = 60000;
     /**
      * 时与毫秒的倍数
      */
-    private static final int HOUR = 3600000;
+    public static final int HOUR = 3600000;
     /**
      * 天与毫秒的倍数
      */
     public static final int DAY  = 86400000;
+    /**
+     * 年与毫秒的倍数
+     */
+    public static final long YEAR  = 86400000*365L;
 
     private TimeUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -42,6 +47,7 @@ public class TimeUtils {
     public static final SimpleDateFormat DATE_NO_YEAR_SDF = new SimpleDateFormat("MM-dd", Locale.getDefault());
 
     public static final SimpleDateFormat HOUR_SDF = new SimpleDateFormat("HH:mm", Locale.getDefault());
+    public static final SimpleDateFormat H_M_S_SDF = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
     public static final SimpleDateFormat HOURLY_FORECAST_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
@@ -70,6 +76,14 @@ public class TimeUtils {
      */
     public  synchronized static  String milliseconds2String(long milliseconds, SimpleDateFormat format) {
         return format.format(new Date(milliseconds));
+    }
+
+ public  synchronized static  String getTimeHour(long milliseconds) {
+     SimpleDateFormat hms = new SimpleDateFormat("HH:mm:ss");
+     hms.setTimeZone(TimeZone.getTimeZone("GMT"));
+     Date tTime = new Date(milliseconds);//跑步用时
+     String totalTime = hms.format(tTime);
+    return totalTime;
     }
 
     /**
@@ -338,7 +352,7 @@ public class TimeUtils {
      * @return 星期
      */
     public static String getWeek(String time, SimpleDateFormat format) {
-        return new SimpleDateFormat("EEEE", Locale.getDefault()).format(string2Date(time, format));
+        return new SimpleDateFormat("EEEE", Locale.getDefault()).format(string2Date(time, format)).replace("星期","周");
     }
 
     /**
@@ -567,6 +581,53 @@ public class TimeUtils {
         }
         return (float) (now.getTime() - begin.getTime()) / (float) (end.getTime() - begin.getTime());
     }
+
+    /**
+     * 获得两个日期间距多少天
+     *
+     * @param beginDate
+     * @param endDate
+     * @return
+     */
+    public static long getTimeDistance(Date beginDate, Date endDate) {
+        Calendar fromCalendar = Calendar.getInstance();
+        fromCalendar.setTime(beginDate);
+        fromCalendar.set(Calendar.HOUR_OF_DAY, fromCalendar.getMinimum(Calendar.HOUR_OF_DAY));
+        fromCalendar.set(Calendar.MINUTE, fromCalendar.getMinimum(Calendar.MINUTE));
+        fromCalendar.set(Calendar.SECOND, fromCalendar.getMinimum(Calendar.SECOND));
+        fromCalendar.set(Calendar.MILLISECOND, fromCalendar.getMinimum(Calendar.MILLISECOND));
+
+        Calendar toCalendar = Calendar.getInstance();
+        toCalendar.setTime(endDate);
+        toCalendar.set(Calendar.HOUR_OF_DAY, fromCalendar.getMinimum(Calendar.HOUR_OF_DAY));
+        toCalendar.set(Calendar.MINUTE, fromCalendar.getMinimum(Calendar.MINUTE));
+        toCalendar.set(Calendar.SECOND, fromCalendar.getMinimum(Calendar.SECOND));
+        toCalendar.set(Calendar.MILLISECOND, fromCalendar.getMinimum(Calendar.MILLISECOND));
+
+        long dayDistance = (toCalendar.getTime().getTime() - fromCalendar.getTime().getTime()) / DAY;
+        dayDistance = Math.abs(dayDistance);
+
+        return dayDistance;
+    }
+
+    /**
+     * 获取几年后的时间
+     */
+     public static String getadterYearTime(int year){
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar canlandar = Calendar.getInstance();
+        canlandar.setTime(date);
+        canlandar.add(Calendar.YEAR,year );
+        return df.format(canlandar.getTime()).toString();
+    }
+
+     public static String getadterYearTime(Calendar canlandar,int year){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        canlandar.add(Calendar.YEAR,year );
+        return df.format(canlandar.getTime()).toString();
+    }
+
     public enum TimeUnit {
         MSEC,
         SEC,

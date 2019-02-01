@@ -1,5 +1,6 @@
 package com.moodsmap.waterlogging.presentation.kotlinx.extensions
 
+import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -13,6 +14,20 @@ import java.io.Serializable
 inline fun <reified T> Fragment.start() {
     this.startActivity(Intent(context, T::class.java))
 }
+
+inline fun <reified T> Fragment.start(startCode:Int) {
+    this.startActivityForResult(Intent(activity, T::class.java),startCode)
+}
+
+inline fun <reified T> Fragment.start(arg:Map<String,Any>) {
+    this.startActivity(activity.getIntentEx<T>(arg))
+}
+
+inline fun <reified T> Fragment.start(startCode:Int,arg:Map<String,Any>) {
+    this.startActivityForResult(activity.getIntentEx<T>(arg),startCode)
+}
+
+
 
 fun Fragment.withArgument(key: String, value: Any) {
     val args = Bundle()

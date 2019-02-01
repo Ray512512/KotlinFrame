@@ -16,8 +16,12 @@ object ChoicePicTool{
     @JvmField  val CHOICE_PIC=1 //选图
     @JvmField  val TAKE_PHOTO=2 //拍照
 
-    @JvmStatic fun choicePic(activity: Activity){
-        MultiImageSelector.create().single().onlyCamera(false).showCamera(false).start(activity, CHOICE_PIC)
+    @JvmStatic fun choicePic(activity: Activity,showCarmra:Boolean=false){
+        MultiImageSelector.create().single().onlyCamera(false).showCamera(showCarmra).start(activity, CHOICE_PIC)
+    }
+
+    @JvmStatic fun choiceMutiPic(activity: Activity,list:ArrayList<String>,size:Int){
+        MultiImageSelector.create().count(size).origin(list).onlyCamera(false).showCamera(false).start(activity, CHOICE_PIC)
     }
 
     @JvmStatic fun choiceMutiPic(activity: Activity,size:Int){

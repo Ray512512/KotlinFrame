@@ -21,7 +21,9 @@ import android.view.animation.LinearInterpolator;
 
 import com.moodsmap.waterlogging.R;
 
-
+/**
+ * 仿ios选中效果CheckBox
+ */
 public class SmoothCheckBox extends View implements View.OnClickListener {
  
  // 动画持续时间

@@ -96,7 +96,7 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
 
     protected abstract val layoutResId: Int
 
-    protected abstract fun lazyFetchData()
+    open protected fun lazyFetchData(){}
 
     private fun lazyFetchDataIfPrepared() {
         if (userVisibleHint && !hasFetchData && isViewPrepared) {
@@ -106,33 +106,12 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
         }
     }
 
-    /*override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation {
-        return super.onCreateAnimation(transit, enter, nextAnim)
-    }*/
-   /* protected val tvTitle:TextView by unSafeLazy {
-        findViewById<TextView>(R.id.tv_title)
-    }
-
-    protected val imgBack:ImageView by unSafeLazy {
-        findViewById<ImageView>(R.id.img_back)
-    }
-
-    protected val imgRightBtn:ImageView by unSafeLazy {
-        findViewById<ImageView>(R.id.img_action)
-    }*/
-
     open fun getTitle(): String = emptyString
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isViewPrepared = true
 //        lazyFetchDataIfPrepared()
-    }
-
-    fun normalTitle(view:View,s:Int){
-        view.findViewById<LinearLayout>(R.id.top_title).visibility=View.VISIBLE
-        view.findViewById<TextView>(R.id.tv_title).text=get(s)
-        view.findViewById<ImageView>(R.id.img_back).onClick { activity.onBackPressed() }
     }
 
     override fun onDestroyView() {
@@ -162,11 +141,6 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
                 .build()
     }
 
-    //展示家在等待页
-    /* fun showLoading(){
-        mVaryViewHelper?.showLoadingView()
-    }*/
-
     //展示网络错误页
     fun showNetWorkErrorView(dealErrorType: DealErrorType) {
         stopLoadingDialog()
@@ -191,6 +165,10 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
     fun showErrorView(dealErrorType: DealErrorType) {
         stopLoadingDialog()
         mVaryViewHelper?.showErrorView()
+    }
+
+    open fun showErrorView(str:String){
+        showDialog(str)
     }
 
     //展示空白页
@@ -248,13 +226,5 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
     fun stopLoadingDialog() {
         loadingDialog?.let { if (it.isShowing) it.dismiss() }
     }
-    /*
-     fun showLoadingDialog() {
-
-    }
-
-     fun showLoadingDialog(message: String) {
-    }*/
-
 
 }

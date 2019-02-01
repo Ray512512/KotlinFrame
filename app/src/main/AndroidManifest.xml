@@ -62,6 +62,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/lsh_file_paths" />
         </provider>
+
+        <activity android:name=".ui.dispatch.login.LoginActivity"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

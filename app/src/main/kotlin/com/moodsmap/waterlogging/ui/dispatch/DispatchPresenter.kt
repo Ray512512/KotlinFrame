@@ -9,8 +9,4 @@ import javax.inject.Inject
 @PerActivity
 class DispatchPresenter @Inject constructor() : BasePresenter<DispatchContract.View>(), DispatchContract.Presenter {
 
-    override fun onPresenterCreate() {
-        super.onPresenterCreate()
-        view?.initPermission()
-    }
 }

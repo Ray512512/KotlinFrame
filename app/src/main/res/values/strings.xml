@@ -10,7 +10,10 @@
     <string name="validation_account">验证手机</string>
     <string name="login_wechat">微信登录</string>
     <string name="login_qq">QQ登录</string>
+    <string name="alertdialog_title">系统提示</string>
 
+    <string name="file_save_to">图片已保存至:%s</string>
+    <string name="save_succ">保存成功</string>
     <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
     <string name="location_must_permission">无法获取到当前位置信息将无法进行下单，请前往系统设置打开定位权限</string>
     <string name="btn_go">前往</string>

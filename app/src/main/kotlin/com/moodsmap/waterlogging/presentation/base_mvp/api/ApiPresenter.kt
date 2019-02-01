@@ -67,4 +67,8 @@ abstract class ApiPresenter<VIEW : BaseContract.View> : BasePresenter<VIEW>(), R
     override fun onRequestError(requestType: RequestType, errorMessage: String?) {
         onRequestError(errorMessage)
     }
+
+    override fun onRequestError(requestType: RequestType, error: Throwable) {
+        super.onRequestError(requestType,error)
+    }
 }

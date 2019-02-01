@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_f1"
+    android:orientation="vertical"
+    >
+
+    <com.moodsmap.waterlogging.view.layout.TemplateTitle
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_title"
+        app:canBack="true"
+        app:titleText="标题"
+        app:needBottomLine="true"/>
+
+    <include layout="@layout/pull_rec"/>
+
+</LinearLayout>

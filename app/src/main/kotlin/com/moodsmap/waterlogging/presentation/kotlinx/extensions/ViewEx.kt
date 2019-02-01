@@ -3,9 +3,12 @@ package com.moodsmap.waterlogging.presentation.kotlinx.extensions
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.support.annotation.Px
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +16,14 @@ import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.moodsmap.waterlogging.data.AppConst
+import com.moodsmap.waterlogging.data.domain.entity.User
 import com.moodsmap.waterlogging.presentation.rxutil.RxFun
 import com.moodsmap.waterlogging.presentation.rxutil.RxInterface
 import com.moodsmap.waterlogging.presentation.utils.AnimaUtil
 import com.moodsmap.waterlogging.presentation.utils.SizeUtils
 import com.moodsmap.waterlogging.presentation.utils.StatusBarUtils
+import com.moodsmap.waterlogging.view.recycleviewhelper.GridSpacingItemDecoration
 
 
 /**
@@ -38,6 +44,20 @@ fun TextView.rightIcon(resId:Int,padding:Int){
     setCompoundDrawablesWithIntrinsicBounds(null, null, drawableLeft, null)
     compoundDrawablePadding = SizeUtils.dp2px(context, padding.toFloat())
 }
+
+
+fun TextView.rightIcon(drawable: Drawable?) {
+    setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+}
+
+fun TextView.rightIcon(resId:Int,padding:Int,iconW:Int,iconH:Int){
+    val drawableLeft = ContextCompat.getDrawable(context,resId)
+    drawableLeft.setBounds(0,0,iconW,iconH)
+    setCompoundDrawables(null,null,drawableLeft,null)
+//    setCompoundDrawablesWithIntrinsicBounds(null, null, drawableLeft, null)
+    compoundDrawablePadding = SizeUtils.dp2px(context, padding.toFloat())
+}
+
 
 fun EditText.string() = this.text.toString()
 
@@ -95,13 +115,25 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
-
 fun View.onClick(time:Long=500,function: () -> Unit) {
-        RxFun.clicks(this,time,object : RxInterface.simple{
-            override fun action() {
+    RxFun.clicks(this,time,object : RxInterface.simple{
+        override fun action() {
+            if(tag is String){
+                if(tag.toString() == AppConst.UserKey.NEED_LOGIN_TAG){
+                    val activity=context.scanForActivity()
+                    if(activity!=null){
+                        if(User.checkLogin(activity)){
+                            function()
+                        }
+                    }else{
+                        function()
+                    }
+                }
+            }else{
                 function()
             }
-        })
+        }
+    })
 }
 
 infix fun ViewGroup.inflate(layoutResId: Int): View =
@@ -128,4 +160,9 @@ fun ImageView.setTintColor(colorId:Int,drawableId: Int){
     val d=resources.getDrawable(drawableId)
     DrawableCompat.setTint(d,context.takeColor(colorId))
     setImageDrawable(d)
+}
+
+fun RecyclerView.gridItemMargin(martin:Int){
+    if(layoutManager is GridLayoutManager)
+        addItemDecoration(GridSpacingItemDecoration((layoutManager as GridLayoutManager).spanCount,SizeUtils.dp2px(context,martin.toFloat()),false))
 }

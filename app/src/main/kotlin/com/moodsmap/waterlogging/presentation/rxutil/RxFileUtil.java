@@ -22,6 +22,13 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class RxFileUtil {
 
+    /**
+     * 解压文件
+     * @param zipFile
+     * @param outPathString
+     * @param onUnzipProgress
+     * @return
+     */
     public static Disposable UnZipFolder(final File zipFile, final String outPathString, final OnUnzipProgress onUnzipProgress) {
 
         onUnzipProgress.onStart();

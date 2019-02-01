@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.moodsmap.waterlogging.presentation.widget.impl.ChoicePicTool.FILE_HEAD;
+
 /**
  * 简单重构了下，并且修复了重复插入图片问题
  * Created by drakeet on 8/10/15.
@@ -49,13 +52,21 @@ public class RxImgSave {
     public static void saveImageToGallery(Context context,String mImageUrl) {
         // @formatter:off
         Log.v("saveImageToGallery",mImageUrl);
-        String mImageTitle=mImageUrl.substring(mImageUrl.lastIndexOf("/")+1,mImageUrl.lastIndexOf("."));
+        String mImageTitle;
+        try {
+            mImageTitle = mImageUrl.substring(mImageUrl.lastIndexOf("/") + 1, mImageUrl.lastIndexOf("."));
+        } catch (StringIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            mImageTitle = mImageUrl.substring(mImageUrl.lastIndexOf("/") + 1, mImageUrl.length());
+        }
         Subscription s = saveImageAndGetPathObservable(context, mImageUrl, mImageTitle)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(uri -> {
-                    File appDir = new File(Environment.getExternalStorageDirectory(), context.getString(R.string.app_tag_name));
-                    String msg = String.format(context.getString(R.string.picture_has_save_to), appDir.getAbsolutePath());
-                    Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+                    if (uri != null && !TextUtils.isEmpty(uri.getPath())) {
+                        Toast.makeText(context, String.format(context.getString(R.string.file_save_to), uri.getPath()), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(context,context.getString(R.string.save_succ), Toast.LENGTH_SHORT).show();
+                    }
                 }, error -> Toast.makeText(context,error.getMessage(),Toast.LENGTH_SHORT).show());
         // @formatter:on
 //        addSubscription(s);
@@ -70,6 +81,15 @@ public class RxImgSave {
                     bitmap = Picasso.with(context).load(url).get();
                 } catch (IOException e) {
                     subscriber.onError(e);
+                }catch (IllegalStateException e2) {
+                    if (url.startsWith("/")) {
+                        String local = FILE_HEAD + url;
+                        try {
+                            bitmap = Picasso.with(context).load(local).get();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
                 if (bitmap == null) {
                     subscriber.onError(new Exception("无法下载到图片"));

@@ -54,25 +54,21 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
     val activityComponent: ActivityComponent by unSafeLazy {
         getAppComponent().plus(ActivityModule(this))
     }
-    protected val tvTitle:TextView by unSafeLazy {
-        findViewById<TextView>(R.id.tv_title)
-    }
-
-    protected val imgBack: ImageView by unSafeLazy {
-        findViewById<ImageView>(R.id.img_back)
-    }
-
-    protected val imgRightBtn: ImageView by unSafeLazy {
-        findViewById<ImageView>(R.id.img_action)
-    }
 
     protected var mVaryViewHelper: VaryViewHelper? = null
 
-
+    /**
+     * 白色标题标识
+     */
+    protected var isWihteStatus=false
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        StatusBarUtils.setStatusBarBg(this)
-        transparentStatusBar()
+        if(isWihteStatus){
+            StatusBarUtils.setStatusColor(this,R.color.white)
+        }else{
+            StatusBarUtils.setStatusBarBg(this)
+            transparentStatusBar()
+        }
         injectDependencies()
         navigator.fragmentChangeListener = this
         RxBus.register(this)
@@ -81,22 +77,6 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
         super.onCreate(savedInstanceState)
     }
 
-    fun normalTitle(s:Int,b:Boolean=true){
-        tvTitle.text=get(s)
-        if(b)
-            imgBack.onClick { finish() }
-    }
-
-    fun normalTitle(s:String,b:Boolean=true){
-        tvTitle.text=s
-        if(b)
-            imgBack.onClick { finish() }
-    }
-
-    fun onlyTitle(s:Int){
-        findViewById<TextView>(R.id.tv_title).text=get(s)
-        findViewById<ImageView>(R.id.img_back).visibility=View.GONE
-    }
     override fun onResume() {
         super.onResume()
         layoutAnim.start()
@@ -115,16 +95,20 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
 
     @CallSuper
     override fun onBackPressed() {
-        if (navigator.hasBackStack())
+        if (navigator.hasBackStack2())
             navigator.goBack()
         else
             super.onBackPressed()
     }
-
+    /**
+     * dragger注入抽象方法 需子类实现
+     */
     protected abstract fun injectDependencies()
-
     private fun getAppComponent() = App.instance.applicationComponent
 
+    /**
+     *fragment 跳转1
+     */
     inline protected fun <reified T : Fragment> goTo(keepState: Boolean = true,
                                                      withCustomAnimation: Boolean = false,
                                                      arg: Bundle = Bundle.EMPTY) {
@@ -132,12 +116,16 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
                 withCustomAnimation = withCustomAnimation,
                 arg = arg)
     }
-
-
+    /**
+     *fragment 跳转2
+     */
     inline fun <reified T : Fragment> goTo(arg: Bundle) {
         navigator.goTo<T>(keepState = false, withCustomAnimation = false, arg = arg)
     }
 
+    /**
+     *fragment 跳转3
+     */
     inline fun <reified T : Fragment> goTo(keepState: Boolean = true,
                                            withCustomAnimation: Boolean = false,
                                            arg: Bundle = Bundle.EMPTY,backStrategy: BackStrategy = BackStrategy.DESTROY) {
@@ -175,36 +163,6 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
         }
-    }
-
-    /**
-     * 初始化Toolbar的功能
-     */
-    protected fun initializeToolbar() {
-        transparentStatusBar()
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_back)
-        setSupportActionBar(toolbar)
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
-
-        val params = toolbar.layoutParams as AppBarLayout.LayoutParams
-        params.topMargin = getStatusBarHeight()
-    }
-
-    protected fun initializeToolbar(title: String) {
-        transparentStatusBar()
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_back)
-        setSupportActionBar(toolbar)
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            supportActionBar!!.title = title
-        }
-
-        val params = toolbar.layoutParams as AppBarLayout.LayoutParams
-        params.topMargin = getStatusBarHeight()
     }
 
     fun getContext(): Context = this
@@ -276,7 +234,12 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
         stopLoadingDialog()
         mVaryViewHelper?.showErrorView()
     }
-
+    /**
+     * 错误提示回调
+     */
+    open fun showErrorView(str:String){
+        showDialog(str)
+    }
     //展示空白页
     fun showEmptyView() {
         stopLoadingDialog()

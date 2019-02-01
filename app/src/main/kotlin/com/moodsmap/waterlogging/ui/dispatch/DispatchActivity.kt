@@ -3,10 +3,11 @@ package com.moodsmap.waterlogging.ui.dispatch
 import android.Manifest
 import android.os.Bundle
 import com.moodsmap.waterlogging.R
-import com.moodsmap.waterlogging.data.domain.cache.User
+import com.moodsmap.waterlogging.data.domain.entity.User
 import com.moodsmap.waterlogging.presentation.base_mvp.base.BaseActivity
+import com.moodsmap.waterlogging.presentation.kotlinx.extensions.krealmextensions.queryFirst
 import com.moodsmap.waterlogging.presentation.kotlinx.extensions.start
-import com.moodsmap.waterlogging.ui.dispatch.login.LoginFragment
+import com.moodsmap.waterlogging.ui.dispatch.login.LoginActivity
 import com.moodsmap.waterlogging.ui.main.MainActivity
 import pl.tajchert.nammu.Nammu
 import pl.tajchert.nammu.PermissionCallback
@@ -15,18 +16,38 @@ import javax.inject.Inject
 
 class DispatchActivity : BaseActivity<DispatchContract.View, DispatchContract.Presenter>(), DispatchContract.View {
 
+    /**
+     * 以下三个方法或字段为该mvp框架每个activity或fragment必须实现父类的抽象对象
+     * 此处注释说明后其他界面不再重复注释
+     * mvp 相关实现类皆在DispatchActivity 关联处注释一次  contact ， presenter
+     * contact层方法注释后其他实际实现处不会再重复注释
+     */
+
+    /**
+     * p层对象
+     */
     @Inject
     protected lateinit var dispatchPresenter: DispatchPresenter
 
+    /**
+     * 注入dragger2
+     */
     override fun injectDependencies() {
         activityComponent.inject(this)
     }
 
+    /**
+     * 初始化p层
+     */
     override fun initPresenter() = dispatchPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
+        User().queryFirst()?.let {
+            User.instance = it
+        }
+        initPermission()
     }
 
     override fun initPermission() {
@@ -46,7 +67,7 @@ class DispatchActivity : BaseActivity<DispatchContract.View, DispatchContract.Pr
     }
 
     override fun openHomeActivity() {
-        if (!User.instance.isLogin()){
+        if (!User.needLogin()){
             openLoginActivity()
             return
         }
@@ -56,9 +77,7 @@ class DispatchActivity : BaseActivity<DispatchContract.View, DispatchContract.Pr
 
     override fun openLoginActivity() {
 //        supportFragmentManager.beginTransaction().add(,LoginFragment()).commit()
-        goTo<LoginFragment>(keepState = true,
-        withCustomAnimation = true,
-        arg = Bundle.EMPTY)
+       start<LoginActivity>()
     }
 
     override fun onResume() {
@@ -93,7 +112,7 @@ class DispatchActivity : BaseActivity<DispatchContract.View, DispatchContract.Pr
 
     private var NEEDED_PERMISSIONS = arrayOf(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_NETWORK_STATE,
-            Manifest.permission.ACCESS_WIFI_STATE,
-            Manifest.permission.ACCESS_COARSE_LOCATION)
+            Manifest.permission.ACCESS_NETWORK_STATE)
+//            Manifest.permission.ACCESS_WIFI_STATE,
+//            Manifest.permission.ACCESS_COARSE_LOCATION)
 }

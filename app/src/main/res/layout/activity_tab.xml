@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_f1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.moodsmap.waterlogging.view.layout.TemplateTitle
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tab_title"
+        app:canBack="true"
+        app:titleText="标题"
+        app:needBottomLine="true"
+        />
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magic_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        />
+    <include layout="@layout/line_f1"
+        android:visibility="gone"/>
+    <include layout="@layout/line_8_f1"
+        android:visibility="gone"/>
+
+<android.support.v4.view.ViewPager
+android:id="@+id/view_pager"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+    />
+<include layout="@layout/show_pop"/>
+    </LinearLayout>

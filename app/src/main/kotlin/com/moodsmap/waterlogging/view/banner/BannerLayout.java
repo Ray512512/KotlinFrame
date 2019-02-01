@@ -23,7 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import com.moodsmap.waterlogging.R;
-import com.moodsmap.waterlogging.presentation.kotlinx.glide.GlideApp;
+import com.moodsmap.waterlogging.presentation.kotlinx.glide.GlideUtils;
 import com.moodsmap.waterlogging.presentation.utils.SizeUtils;
 
 import java.lang.reflect.Field;
@@ -66,6 +66,7 @@ public class BannerLayout extends RelativeLayout {
 
     private int defaultImage;
     private int imageHeight = -1;
+    private int imageWidth = -1;
 
     private enum Shape {
         rect, oval
@@ -150,6 +151,7 @@ public class BannerLayout extends RelativeLayout {
         isAutoPlay = array.getBoolean(R.styleable.BannerLayoutStyle_isAutoPlay, isAutoPlay);
         defaultImage = array.getResourceId(R.styleable.BannerLayoutStyle_defaultImage, defaultImage);
         imageHeight = (int) array.getDimension(R.styleable.BannerLayoutStyle_imageHeight, -1);
+        imageWidth = (int) array.getDimension(R.styleable.BannerLayoutStyle_imageWidth, -1);
         array.recycle();
 
         //绘制未选中状态图形
@@ -218,7 +220,7 @@ public class BannerLayout extends RelativeLayout {
     }
 
 
-    public void setCornerImg(ArrayList<Object> viewRes){
+    public void setCornerImg(ArrayList<String> viewRes,int raduis){
         if(viewRes.size()==0)return;
         List<View> views = new ArrayList<>();
         itemCount = viewRes.size();
@@ -226,26 +228,27 @@ public class BannerLayout extends RelativeLayout {
         if (itemCount < 1) {//当item个数0
             throw new IllegalStateException("item count not equal zero");
         } else if (itemCount < 2) {//当item个数为1
-            views.add(getContentView(viewRes.get(0), 0));
-            views.add(getContentView(viewRes.get(0), 0));
-            views.add(getContentView(viewRes.get(0), 0));
-        } else if (itemCount < 3) {//当item个数为2
-            views.add(getContentView(viewRes.get(0), 0));
-            views.add(getContentView(viewRes.get(1), 1));
-            views.add(getContentView(viewRes.get(0), 0));
-            views.add(getContentView(viewRes.get(1), 1));
+            views.add(getContentView(viewRes.get(0), 0,raduis));
+            views.add(getContentView(viewRes.get(0), 0,raduis));
+            views.add(getContentView(viewRes.get(0), 0,raduis));
+        } else if (itemCount < 3) {//当item个数为2,raduis
+            views.add(getContentView(viewRes.get(0), 0,raduis));
+            views.add(getContentView(viewRes.get(1), 1,raduis));
+            views.add(getContentView(viewRes.get(0), 0,raduis));
+            views.add(getContentView(viewRes.get(1), 1,raduis));
         } else {
             for (int i = 0; i < viewRes.size(); i++) {
-                views.add(getContentView(viewRes.get(i), i));
+                views.add(getContentView(viewRes.get(i), i,raduis));
             }
         }
         setViews(views);
     }
 
-    public View getContentView(Object res, final int position){
+    public View getContentView(String  res, final int position,int raduis){
         View v= LayoutInflater.from(getContext()).inflate(R.layout.image_corner,null);
         ImageView imageView = (ImageView) v.findViewById(R.id.image);
-        GlideApp.with(getContext()).load(res).placeholder(R.mipmap.placeholder_gray).into(imageView);
+        GlideUtils.loadRound(getContext(),res,imageView,raduis);
+//        GlideApp.with(getContext()).load(res).placeholder(R.mipmap.placeholder_gray).into(imageView);
         imageView.setOnClickListener(v1 -> {
             if (onBannerItemClickListener != null) {
                 onBannerItemClickListener.onItemClick(position);
@@ -263,7 +266,7 @@ public class BannerLayout extends RelativeLayout {
             }
         });
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        GlideApp.with(getContext()).load(res).placeholder(R.mipmap.placeholder_gray).into(imageView);
+        GlideUtils.load(getContext(),res,imageView);
         return imageView;
     }
 
@@ -307,10 +310,14 @@ public class BannerLayout extends RelativeLayout {
         if (getImageHeight() != -1) {
             ViewGroup.LayoutParams ivParams = this.getLayoutParams();
             ivParams.width = SizeUtils.getDisplayWidth(getContext());
+            if(imageWidth!=-1){
+                ivParams.width=imageWidth;
+            }
             ivParams.height = getImageHeight();
             imageView.setLayoutParams(ivParams);
         }
-        GlideApp.with(getContext()).load(url).placeholder(R.mipmap.placeholder_gray).into(imageView);
+        GlideUtils.load(getContext(),url,imageView);
+//        GlideApp.with(getContext()).load(url).placeholder(R.mipmap.placeholder_gray).into(imageView);
         return imageView;
     }
 

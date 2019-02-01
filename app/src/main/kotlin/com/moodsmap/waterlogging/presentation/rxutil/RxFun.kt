@@ -103,7 +103,7 @@ object RxFun {
      */
     @JvmStatic
     fun clicks(view: View, time: Long, simple: RxInterface.simple): Disposable {
-        return RxView.clicks(view).throttleFirst(time.toLong(), TimeUnit.MILLISECONDS).subscribe { simple.action() }
+        return RxView.clicks(view).throttleFirst(time, TimeUnit.MILLISECONDS).subscribe { simple.action() }
     }
 
     /**

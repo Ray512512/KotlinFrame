@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.View
 import com.moodsmap.waterlogging.presentation.kotlinx.extensions.onClick
 import java.io.*
+import java.util.ArrayList
 
 /**
  * Created by Ray on 2018/3/21.
@@ -73,6 +74,21 @@ class Utils {
         @JvmStatic
         fun onClick(v: View, function: () -> Unit){
             v.onClick { function() }
+        }
+
+        @JvmStatic
+        fun isInstalled(context: Context, packageName: String): Boolean {
+            val packageManager = context.packageManager
+            val packageInfos = packageManager.getInstalledPackages(0)
+            val packageNames = ArrayList<String>()
+
+            if (packageInfos != null) {
+                for (i in packageInfos.indices) {
+                    val packName = packageInfos[i].packageName
+                    packageNames.add(packName)
+                }
+            }
+            return packageNames.contains(packageName)
         }
     }
 

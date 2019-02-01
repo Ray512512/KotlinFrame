@@ -35,7 +35,7 @@ class WebViewAgent  {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    fun setWebViewSetting(webView: WebView, mUrl: String) {
+    fun setWebViewSetting(webView: WebView) {
         this.mWebView=webView
         mWebView?.webViewClient = WebViewClient()
         mWebView?.webChromeClient = WebChromeClient()
@@ -77,9 +77,7 @@ class WebViewAgent  {
                     true
                 }
             }
-
         }
-        mWebView?.loadUrl(mUrl)
     }
 
     var callBack: WebAgentCallBack?=null
@@ -87,5 +85,42 @@ class WebViewAgent  {
         fun onWebLoadProgress(progress:Int)
     }
 
+    /**
+     * 加载url内容
+     */
+    fun loadUrl(url:String){
+        if(url.isNotEmpty())
+            mWebView?.loadUrl(url)
+    }
+
+    /**
+     * 加载标签内容
+     */
+    fun initAndLoad(webView: WebView,content: String){
+        mWebView=webView
+        mWebView?.loadDataWithBaseURL(null,
+                getHtmlData(content), "text/html", "utf-8", null)
+    }
+    /**
+     * 加载标签内容
+     */
+    fun loadDataWithBaseURL(content: String){
+        mWebView?.loadDataWithBaseURL(null,
+                getHtmlData(content), "text/html", "utf-8", null)
+    }
+
+    /**
+     * 加载html标签
+     *
+     * @param bodyHTML
+     * @return
+     */
+    private fun getHtmlData(bodyHTML: String): String {
+        val head = "<head>" +
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> " +
+                "<style>img{max-width: 100%; width:auto; height:auto!important;}</style>" +
+                "</head>"
+        return "<html>$head<body>$bodyHTML</body></html>"
+    }
 
 }

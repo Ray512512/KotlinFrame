@@ -1,4 +1,4 @@
-package com.moodsmap.waterlogging.data.domain.entity
+package com.moodsmap.waterlogging.data.domain.entity.base
 
 /**
  * Created by gong on 2017/11/6.

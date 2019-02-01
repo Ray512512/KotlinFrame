@@ -60,6 +60,7 @@
         <attr name="isAutoPlay" format="boolean" />
         <attr name="defaultImage" format="integer|reference" />
         <attr name="imageHeight" format="dimension|reference" />
+        <attr name="imageWidth" format="dimension|reference" />
     </declare-styleable>
 
     <declare-styleable name="SmoothCheckBox">
@@ -186,5 +187,10 @@
             <enum name="invitecode" value="7" />
         </attr>
         <attr name="e_text" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="HintEditText">
+        <attr name="maxLength" format="integer"/>
     </declare-styleable>
 </resources>

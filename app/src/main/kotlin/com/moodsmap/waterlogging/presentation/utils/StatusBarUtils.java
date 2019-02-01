@@ -37,31 +37,13 @@ public class StatusBarUtils {
         return b;
     }
 
-    /*public static void setTranslucent(Activity context){
-        Sofia.with(context).invasionStatusBar();
-        context.getWindow().setNavigationBarColor(Color.BLACK);
-    }*/
-
-    public static void setTranslucent(Activity context, View fitView){
-//        new PseudoImmersiveModeManager(context).makeStatusBarImmersive(fitView);
-//        Sofia.with(context).invasionStatusBar().fitsSystemWindowView(fitView);
-    }
-
     public static void setStatusBarBg(Activity context){
         if(isFiter(context.getClass().getCanonicalName()))return;
         new PseudoImmersiveModeManager(context).makeStatusBarImmersive();
-//        Sofia.with(context).statusBarBackground(ContextCompat.getDrawable(context, R.drawable.shape_gradient));
     }
-
-   /* public static void setStatusBarBg(android.support.v4.app.Fragment context){
-        if(isFiter(context.getClass().getCanonicalName()))return;
-        if(isFiter(context.getActivity().getClass().getCanonicalName()))return;
-//        Sofia.with(context.getActivity()).statusBarBackground(ContextCompat.getDrawable(context.getActivity(), R.drawable.shape_gradient));
-    }*/
 
     public static void setStatusBarView(Context context,View top_view){
         new PseudoImmersiveModeManager((Activity) context).makeStatusBarImmersive(top_view);
-//        top_view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, StatusBarUtils.getStatusBarHeight(context)));
     }
 
     public static int statusBarH=0;
@@ -106,19 +88,19 @@ public class StatusBarUtils {
         }
     }
 
-    public static void setStatusWhite(Activity activity){
+    public static void setStatusColor(Activity activity,int color){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window=activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             //设置状态栏颜色
-            window.setStatusBarColor(ContextCompat.getColor(activity, R.color.white));
+            window.setStatusBarColor(ContextCompat.getColor(activity,color));
+            window.setNavigationBarColor(Color.BLACK);
             View decor = window.getDecorView();
             int ui = decor.getSystemUiVisibility();
             ui |=View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             decor.setSystemUiVisibility(ui);
         }
     }
-
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/text_f1"
+    android:id="@+id/line_8_f1"
+    android:layout_height="8dp">
+
+</View>
