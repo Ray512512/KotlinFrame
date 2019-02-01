@@ -271,6 +271,7 @@ public class BitmapUtil {
     }
 
     public static Bitmap bimapRound(Bitmap mBitmap,float index){
+        if(mBitmap==null)return null;
         Bitmap bitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_4444);
 
         Canvas canvas = new Canvas(bitmap);

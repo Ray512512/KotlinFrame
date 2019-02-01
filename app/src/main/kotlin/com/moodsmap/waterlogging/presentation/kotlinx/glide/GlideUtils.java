@@ -1,7 +1,9 @@
 package com.moodsmap.waterlogging.presentation.kotlinx.glide;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -26,6 +28,10 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  */
 public class GlideUtils {
 
+    public static boolean check(Context context) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 || context != null && (!(context instanceof Activity) || !((Activity) context).isDestroyed());
+    }
+
     public static String checkUrl(String url){
         if(TextUtils.isEmpty(url))return "";
         String r=url;
@@ -37,10 +43,13 @@ public class GlideUtils {
         return r;
     }
     public static void loadRoundImg(ImageView imageView, Bitmap bitmap,int corner){
+        if(!check(imageView.getContext()))return;
+        if(bitmap==null)return;
         imageView.setImageBitmap(BitmapUtil.bimapRound(bitmap, SizeUtils.dp2px(imageView.getContext(),corner)));
     }
 
     public static void loadCircleImg(ImageView imageView, String  url){
+        if(!check(imageView.getContext()))return;
         url=checkUrl(url);
         GlideApp.with(App.instance).load(url).transform
                 (new CircleCrop()).
@@ -48,6 +57,7 @@ public class GlideUtils {
                 into(imageView);
     }
     public static void loadCircleImg(Context context,ImageView imageView, String  url){
+        if(!check(context))return;
         url=checkUrl(url);
         GlideApp.with(context).load(url).transform
                 (new CircleCrop()).
@@ -56,6 +66,7 @@ public class GlideUtils {
     }
 
     public static void loadCircleImg(Context context,ImageView imageView, String  url,int defaultId){
+        if(!check(context))return;
         if(TextUtils.isEmpty(url)){
             GlideApp.with(context).load(defaultId).transform
                     (new CircleCrop()).
@@ -71,6 +82,7 @@ public class GlideUtils {
     }
 
     public static void loadCircleImg(Context context, String  url,ImageView imageView){
+        if(!check(context))return;
         url=checkUrl(url);
         GlideApp.with(context).load(url).transform
                 (new CircleCrop()).
@@ -79,6 +91,7 @@ public class GlideUtils {
     }
 
     public static void loadCircleImgByDisallowHardwareConfig(Context context, String  url,ImageView imageView){
+        if(!check(context))return;
         url=checkUrl(url);
         GlideApp.with(context).load(url).transform
                 (new CircleCrop()).
@@ -88,19 +101,23 @@ public class GlideUtils {
     }
 
     public static void load(Context mContext, String url, ImageView view) {
+        if(!check(mContext))return;
         url=checkUrl(url);
         GlideApp.with(mContext).load(url).centerCrop().placeholder(R.mipmap.placeholder_gray).into(view);
     }
 
     public static void load(Context mContext, int url, ImageView view) {
+        if(!check(mContext))return;
         GlideApp.with(mContext).load(url).centerCrop().placeholder(R.mipmap.placeholder_gray).into(view);
     }
     public static void loadDefault(Context mContext, String url, ImageView view) {
+        if(!check(mContext))return;
         url=checkUrl(url);
         GlideApp.with(mContext).load(url).placeholder(R.mipmap.placeholder_gray).into(view);
     }
 
     public static void loadRound(Context mContext, String url, ImageView view,int radius) {
+        if(!check(mContext))return;
         url=checkUrl(url);
         view.setTag(null);
         Glide.with(mContext)
@@ -114,6 +131,7 @@ public class GlideUtils {
     }
 
     public static void loadRound(Context mContext, File file, ImageView view, int radius) {
+        if(!check(mContext))return;
         Glide.with(mContext)
                 .load(file)
                 .apply(new RequestOptions()
@@ -124,6 +142,7 @@ public class GlideUtils {
 //        GlideApp.with(mContext).load(file).placeholder(R.mipmap.placeholder_gray).centerCrop().transform(new CenterCrop(),new RoundedCornersTransformation(radius, 0, RoundedCornersTransformation.CornerType.ALL)).into(view);
     }
     public static void load(Context mContext, String url, ImageView view, int defaultRes) {
+        if(!check(mContext))return;
         url=checkUrl(url);
         GlideApp.with(mContext).load(url).placeholder(defaultRes).into(view);
     }
