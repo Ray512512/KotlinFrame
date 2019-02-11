@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.moodsmap.waterlogging.view.layout.SlidingButtonView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ray.frame.view.layout.SlidingButtonView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 tools:ignore="Suspicious0dp">
 
-                <com.moodsmap.waterlogging.view.checkBox.SmoothCheckBox
+                <com.ray.frame.view.checkBox.SmoothCheckBox
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     app:strikeWidth="0dp"
@@ -65,4 +65,4 @@
         </FrameLayout>
     </RelativeLayout>
 
-</com.moodsmap.waterlogging.view.layout.SlidingButtonView>
+</com.ray.frame.view.layout.SlidingButtonView>

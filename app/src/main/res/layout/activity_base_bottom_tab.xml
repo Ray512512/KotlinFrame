@@ -6,13 +6,13 @@
     android:clipToPadding="false"
     android:orientation="vertical">
 
-    <com.moodsmap.waterlogging.view.viewpager.LimitViewPager
+    <com.ray.frame.view.viewpager.LimitViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1000">
 
-    </com.moodsmap.waterlogging.view.viewpager.LimitViewPager>
+    </com.ray.frame.view.viewpager.LimitViewPager>
 
     <FrameLayout
         android:id="@+id/container"
@@ -25,7 +25,7 @@
         android:layout_height="1px"
         android:background="#c7c7c7" />
 
-    <com.moodsmap.waterlogging.view.view.BottomTabView
+    <com.ray.frame.view.view.BottomTabView
         android:id="@+id/bottomTabView"
         android:layout_width="match_parent"
         android:layout_height="50dp"

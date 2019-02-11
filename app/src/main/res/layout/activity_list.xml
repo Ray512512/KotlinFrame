@@ -8,7 +8,7 @@
     android:orientation="vertical"
     >
 
-    <com.moodsmap.waterlogging.view.layout.TemplateTitle
+    <com.ray.frame.view.layout.TemplateTitle
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list_title"

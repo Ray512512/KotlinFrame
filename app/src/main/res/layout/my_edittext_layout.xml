@@ -17,7 +17,7 @@
         android:layout_marginBottom="-16dp"
         android:textSize="@dimen/text_2"/>
 
-    <com.moodsmap.waterlogging.view.edittext.floatinglabeledittext.FloatingLabelEditText
+    <com.ray.frame.view.edittext.floatinglabeledittext.FloatingLabelEditText
         android:id="@+id/my_et_et"
         android:layout_below="@+id/tv_failed"
         android:layout_alignParentLeft="true"
