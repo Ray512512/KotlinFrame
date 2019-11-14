@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -145,5 +146,14 @@ public class GlideUtils {
         if(!check(mContext))return;
         url=checkUrl(url);
         GlideApp.with(mContext).load(url).placeholder(defaultRes).into(view);
+    }
+
+    public static void loadImgNoCache(Context context,ImageView imageView, String  url){
+        if(!check(context))return;
+        GlideApp.with(context).load(url).
+                skipMemoryCache(true).
+                placeholder(R.mipmap.placeholder_gray).
+                diskCacheStrategy(DiskCacheStrategy.NONE).
+                into(imageView);
     }
 }

@@ -41,5 +41,7 @@
     <string name="indate_hint">选择您的证件有效期</string>
     <string name="hint_invite">邀请码（选填）</string>
     <string name="name_hint">输入您的真实姓名</string>
+    <string name="ask_failed">请求失败</string>
+    <string name="need_login_tag">needLogin</string>
 
 </resources>

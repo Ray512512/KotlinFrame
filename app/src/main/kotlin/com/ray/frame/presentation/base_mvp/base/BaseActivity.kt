@@ -60,13 +60,18 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
     /**
      * 白色标题标识
      */
-    protected var isWihteStatus=false
+    var isWihteStatus=false
+    var isDealTitleBar=true
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        if(isWihteStatus){
-            StatusBarUtils.setStatusColor(this,R.color.white)
+        if(isDealTitleBar) {
+            if (isWihteStatus) {
+                StatusBarUtils.setStatusColor(this, R.color.white)
+            } else {
+                StatusBarUtils.setStatusBarBg(this)
+                transparentStatusBar()
+            }
         }else{
-            StatusBarUtils.setStatusBarBg(this)
             transparentStatusBar()
         }
         injectDependencies()
@@ -162,6 +167,10 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
+            val decor = window.decorView
+            var ui = decor.systemUiVisibility
+            ui = ui or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            decor.systemUiVisibility = ui
         }
     }
 

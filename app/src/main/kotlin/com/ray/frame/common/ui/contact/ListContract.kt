@@ -19,6 +19,10 @@ interface ListContract{
          * 设置调用方法
          */
         fun getDataRepositoryFun(): Flowable<BaseListDataRes<T>>
+        /**
+         * 查询列表数据失败
+         */
+        fun loadDataFailed(msg:String)
     }
 
     interface Presenter<T> : ApiContract.Presenter<View<T>> {

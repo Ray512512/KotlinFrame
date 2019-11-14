@@ -8,7 +8,12 @@
         <item name="android:windowBackground">@color/bg_color</item>
         <item name="android:textViewStyle">@style/TextViewStyle</item>
     </style>
-
+    <style name="Text_normal_gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_2</item>
+        <item name="android:textColor">@color/text_3</item>
+    </style>
 
     <style name="TextViewStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textNormal</item>

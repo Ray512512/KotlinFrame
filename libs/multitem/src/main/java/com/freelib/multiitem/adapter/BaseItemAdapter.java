@@ -72,7 +72,12 @@ public class BaseItemAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public <T, V extends BaseViewHolder> void register(@NonNull Class<T> cls, @NonNull ViewHolderManager<T, V> manager) {
         itemTypeManager.register(cls, manager);
     }
-
+    public void clearFoot(){
+        if(footItems.size()!=0){
+            footItems.clear();
+            notifyDataSetChanged();
+        }
+    }
     /**
      * 为相同数据源注册多个ViewHolder的管理类{@link ViewHolderManagerGroup}<br>
      * 主要为相同数据源根据内部属性的值对应多个ViewHolderManager设计，常见的如聊天界面的消息<br>

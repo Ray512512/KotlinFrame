@@ -3,6 +3,7 @@ package com.ray.frame.di.component
 import com.ray.frame.App
 import com.ray.frame.di.module.CommonModule
 import com.ray.frame.di.scope.PerActivity
+import com.ray.frame.presentation.widget.work.NetWorkUtils
 import dagger.Subcomponent
 
 /**
@@ -12,4 +13,5 @@ import dagger.Subcomponent
 @Subcomponent(modules = [(CommonModule::class)])
 interface CommonComponent {
     fun inject(app: App)
+    fun inject(app: NetWorkUtils)
 }

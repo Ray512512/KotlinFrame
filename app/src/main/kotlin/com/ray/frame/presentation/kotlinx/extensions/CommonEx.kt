@@ -26,6 +26,7 @@ import okhttp3.RequestBody
 import java.io.File
 import java.util.*
 import com.ray.frame.presentation.utils.Experimental
+import java.text.DecimalFormat
 
 
 infix fun Context.takeColor(colorId: Int) = ContextCompat.getColor(this, colorId)
@@ -203,3 +204,11 @@ fun Long.formatTime(): String {
 inline fun <reified T> T.logd(message: () -> String) = Lg.d(T::class.simpleName, message())
 
 inline fun <reified T> T.loge(error: Throwable, message: () -> String) = Lg.d(T::class.simpleName, message(), error)
+
+/**
+ * 保留两位小数
+ */
+fun Double?.getIntStr():String{
+    if(this==null)return "0"
+    return DecimalFormat("##0").format(this)
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="25dp"
+    android:id="@+id/empty_v_r"
+    android:background="@color/white"
+    android:gravity="center"
+    >
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:id="@+id/empty_img"
+        android:layout_marginBottom="30dp"
+        android:src="@mipmap/ic_empty_view"/>
+
+    <TextView
+        style="@style/Text_normal_gray"
+        android:textSize="16sp"
+        android:id="@+id/empty_tv"
+        android:text="暂无数据"
+        />
+
+</LinearLayout>

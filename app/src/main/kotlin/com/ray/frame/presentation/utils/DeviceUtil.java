@@ -1,13 +1,21 @@
 package com.ray.frame.presentation.utils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+
+import java.util.UUID;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * 常规工具类
@@ -71,12 +79,46 @@ public class DeviceUtil {
      * @param content 上下文
      * @return String 获取设备序列号
      */
+    @SuppressLint("MissingPermission")
     public static String getSysTelephoneSerialNum(Context content) {
-        TelephonyManager telephonyManager = (TelephonyManager) content.getSystemService(Context.TELEPHONY_SERVICE);
-        content = null;
-        @SuppressLint("MissingPermission") String deviceId = telephonyManager.getDeviceId();
-        Lg.e("设备ID" + deviceId);
+        String deviceId = "";
+        try {
+            if (content == null) {
+                deviceId = getUUID(content);
+            } else {
+                TelephonyManager telephonyManager = (TelephonyManager) content.getSystemService(Context.TELEPHONY_SERVICE);
+                if (telephonyManager == null) {
+                    deviceId = getUUID(content);
+                } else {
+                    deviceId = telephonyManager.getDeviceId();
+                }
+            }
+            Lg.e("设备ID" + deviceId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (TextUtils.isEmpty(deviceId)) {
+            return getUUID(content);
+        }
         return deviceId;
+    }
+
+    public static String getUUID(Context context) {
+        String uuid = "";
+        SharedPreferences mShare = null;
+        if (context != null) {
+            mShare = context.getSharedPreferences("uuid", MODE_PRIVATE);
+            if (mShare != null) {
+                uuid = mShare.getString("uuid", "");
+            }
+        }
+        if (TextUtils.isEmpty(uuid)) {
+            uuid = UUID.randomUUID().toString();
+            if (mShare != null) {
+                mShare.edit().putString("uuid", uuid).apply();
+            }
+        }
+        return uuid;
     }
 
     /**
@@ -88,7 +130,9 @@ public class DeviceUtil {
     public static String getSysCarrier(Context content) {
         String moblieType = "0";
         TelephonyManager telephonyManager = (TelephonyManager) content.getSystemService(Context.TELEPHONY_SERVICE);
-        content = null;
+        if (ActivityCompat.checkSelfPermission(content, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return moblieType;
+        }
         @SuppressLint("MissingPermission") String imsi = telephonyManager.getSubscriberId();
         if (imsi != null && imsi.length() > 0) {
             //因为移动网络编号46000下的IMSI已经用完，所以虚拟了一个46002编号，134/159号段使用了此编号

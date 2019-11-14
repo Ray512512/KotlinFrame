@@ -15,4 +15,10 @@ open class ListPresenter<T> @Inject constructor( val dataRepository: DataReposit
         })
     }
 
+    override fun onRequestError(errorMessage: String?) {
+        super.onRequestError(errorMessage)
+        errorMessage?.let {
+            view?.loadDataFailed(it)
+        }
+    }
 }

@@ -39,6 +39,7 @@ abstract class ApiPresenter<VIEW : BaseContract.View> : BasePresenter<VIEW>(), R
 
     fun <TYPE> fetch(observable: Observable<TYPE>,
                      requestType: RequestType = TYPE_NONE, success: (TYPE) -> Unit) {
+        fetcher.view=view
         fetcher.fetch(observable, requestType, this, success)
     }
 
