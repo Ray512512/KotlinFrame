@@ -88,7 +88,6 @@ class App : Application() {
         }
 
         override fun onActivityResumed(activity: Activity?) {
-            currentActivity=activity
         }
 
         override fun onActivityStarted(activity: Activity?) {
